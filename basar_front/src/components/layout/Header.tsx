@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
           <div className="flex items-center gap-6">
             <span>Улаанбаатар: -12°C ☁️</span>
             <span>•</span>
-            <span>Бид нар дагуу тохь!</span>
+            <span>Бид нар нэг гэр бүл!</span>
           </div>
           <div className="text-right">
             <span>2025.01.15 | 16:30</span>
