@@ -49,22 +49,22 @@ export const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
-            <a href="/" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors">
+            <a href="/" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Нүүр
             </a>
-            <a href="/animals" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors">
+            <a href="/animals" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Амьтад
             </a>
-            <a href="/news" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors">
+            <a href="/news" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Мэдээ
             </a>
-            <a href="/blog" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors">
+            <a href="/blog" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Блог
             </a>
-            <a href="/organizations" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors">
+            <a href="/organizations" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Байгууллагууд
             </a>
-            <a href="/rescue" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors">
+            <a href="/rescue" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Үрчлэгээ&Зар
             </a>
             <a href="/help" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors">
@@ -74,14 +74,14 @@ export const Header: React.FC = () => {
 
           {/* Search & Auth */}
           <div className="flex items-center space-x-3">
-            <div className="hidden lg:flex items-center bg-gray-50 rounded-full px-4 py-2 min-w-48 border border-gray-200">
+            {/* <div className="hidden lg:flex items-center bg-gray-50 rounded-full px-4 py-2 min-w-48 border border-gray-200">
               <Search size={18} className="text-gray-400 mr-2" />
               <input
                 type="text"
                 placeholder="Хайх..."
                 className="bg-transparent flex-1 outline-none text-sm"
               />
-            </div>
+            </div> */}
             
             <Button variant="ghost" size="md" className="lg:hidden p-2">
               <Search size={20} />

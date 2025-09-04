@@ -6,11 +6,12 @@ interface BadgeProps {
   children: React.ReactNode;
   variant?: 'news' | 'blog' | 'photo' | 'verified' | 'default';
   className?: string;
+  title?: string;
 }
 
-export const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', className }) => {
+export const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', className, title }) => {
   const variants = {
-    
+    title: 'bg-orange-100 text-orange-800',
     news: 'bg-orange-100 text-orange-800',
     blog: 'bg-blue-100 text-blue-800',
     photo: 'bg-purple-100 text-purple-800',

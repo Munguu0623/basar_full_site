@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { TArticle } from '@/types';
 import { getFeaturedNews } from '@/lib/api';
 import { formatDate } from '@/lib/utils';
-import { Calendar, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight, Newspaper } from 'lucide-react';
 
 // Mock data for demo
 const mockNewsData: TArticle[] = [
