@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
             <div className="flex flex-wrap gap-3">
               <Badge variant="verified" className="flex items-center gap-1">
                 <CheckCircle size={14} />
-                Verified орг
+                Verified 
               </Badge>
               <Badge variant="default" className="flex items-center gap-1">
                 <Shield size={14} />
@@ -63,12 +63,12 @@ export const Hero: React.FC = () => {
           <div className="relative">
             <div className="aspect-square lg:aspect-video rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=900&q=80"
+                src="/hero_image.png"
                 alt="Амьтанд хайртай гэр бүл: нохой, муур, хүүхдүүдтэй баярлаж байгаа зураг"
                 fill
                 className="object-cover"
                 priority
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(min-width: 680px) 50vw, 10vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
