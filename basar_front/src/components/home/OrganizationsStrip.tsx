@@ -13,7 +13,7 @@ const mockOrgData: TOrganization[] = [
   {
     id: '1',
     name: 'Амьтны эмнэлэг №1',
-    logo: '/api/placeholder/80/80',
+    logo: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80',
     verified: true,
     description: '24 цагийн турш үйлчилгээ үзүүлдэг амьтны эмнэлэг',
     address: 'СБД, 1-р хороо'
@@ -21,7 +21,7 @@ const mockOrgData: TOrganization[] = [
   {
     id: '2',
     name: 'Тэжээвэр амьтны дэлгүүр',
-    logo: '/api/placeholder/80/80',
+    logo: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80',
     verified: true,
     description: 'Амьтны хоол, тоглоом, аксессуар',
     address: 'ХУД, 12-р хороо'
@@ -29,7 +29,7 @@ const mockOrgData: TOrganization[] = [
   {
     id: '3',
     name: 'Гэрэлтүүлэг амьтны байгууллага',
-    logo: '/api/placeholder/80/80',
+    logo: 'https://images.unsplash.com/photo-1415369629372-26f2fe60c467?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80',
     verified: true,
     description: 'Гэрэлтүүлэг амьтдыг хамгаалах',
     address: 'БГД, 3-р хороо'
@@ -37,7 +37,7 @@ const mockOrgData: TOrganization[] = [
   {
     id: '4',
     name: 'Амьтны үрчлэгч төв',
-    logo: '/api/placeholder/80/80',
+    logo: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80',
     verified: true,
     description: 'Эзэнгүй амьтдад шинэ гэр олгох',
     address: 'СХД, 8-р хороо'
@@ -45,7 +45,7 @@ const mockOrgData: TOrganization[] = [
   {
     id: '5',
     name: 'Тэжээвэр амьтны сургалт',
-    logo: '/api/placeholder/80/80',
+    logo: 'https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80',
     verified: true,
     description: 'Нохой муурны сахилга батын сургалт',
     address: 'БЗД, 15-р хороо'
@@ -53,7 +53,7 @@ const mockOrgData: TOrganization[] = [
   {
     id: '6',
     name: 'Амьтны үү, арчилгаа',
-    logo: '/api/placeholder/80/80',
+    logo: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80',
     verified: true,
     description: 'Үү, арчилгаа, гоо сайхны үйлчилгээ',
     address: 'ЧД, 6-р хороо'
@@ -61,7 +61,7 @@ const mockOrgData: TOrganization[] = [
   {
     id: '7',
     name: 'Амьтны хүүхэдтэй харьцах сургалт',
-    logo: '/api/placeholder/80/80',
+    logo: 'https://www.workingnurse.com/wp-content/uploads/2025/01/Therapy-CHLA.jpg',
     verified: true,
     description: 'Хүүхэдтэй амьтны аюулгүй харьцаа',
     address: 'НТД, 4-р хороо'
@@ -69,7 +69,7 @@ const mockOrgData: TOrganization[] = [
   {
     id: '8',
     name: 'Экологийн амьтны төв',
-    logo: '/api/placeholder/80/80',
+    logo: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80&q=80',
     verified: true,
     description: 'Зэрлэг амьтныг хамгаалах ажил',
     address: 'БГД, 20-р хороо'

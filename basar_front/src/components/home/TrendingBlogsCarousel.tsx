@@ -15,13 +15,13 @@ const mockBlogData: TArticle[] = [
     id: '1',
     title: 'Нохойн зөв тэжээлийн арга',
     excerpt: 'Гэрийн тэжээвэр нохойг хэрхэн зөв тэжээх талаар практик зөвлөмж.',
-    imageUrl: '/api/placeholder/400/300',
+    imageUrl: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
     category: 'BLOG',
     publishedAt: '2024-01-15T08:00:00.000Z',
     author: {
       id: '1',
       name: 'С.Сүхбаатар',
-      avatar: '/api/placeholder/40/40'
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80'
     },
     likeCount: 245,
     commentCount: 18
@@ -30,13 +30,13 @@ const mockBlogData: TArticle[] = [
     id: '2',
     title: 'Муурны эрүүл мэндийн шинжилгээ',
     excerpt: 'Муурын эрүүл мэндийг хэрхэн хадгалах талаар мэргэжилтний зөвлөгөө.',
-    imageUrl: '/api/placeholder/400/300',
+    imageUrl: 'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
     category: 'BLOG',
     publishedAt: '2024-01-14T10:30:00.000Z',
     author: {
       id: '2',
       name: 'Д.Баясгалан',
-      avatar: '/api/placeholder/40/40'
+      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80'
     },
     likeCount: 189,
     commentCount: 23
@@ -45,13 +45,13 @@ const mockBlogData: TArticle[] = [
     id: '3',
     title: 'Амьтны гэрэл зургийн хичээл',
     excerpt: 'Гэрийн тэжээвэр амьтныг хэрхэн сайхан авах талаар.',
-    imageUrl: '/api/placeholder/400/300',
+    imageUrl: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
     category: 'BLOG',
     publishedAt: '2024-01-13T14:15:00.000Z',
     author: {
       id: '3',
       name: 'Б.Оюунчимэг',
-      avatar: '/api/placeholder/40/40'
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80'
     },
     likeCount: 167,
     commentCount: 12
@@ -60,13 +60,13 @@ const mockBlogData: TArticle[] = [
     id: '4',
     title: 'Амьтны хүүхэд руу нүүх бэлтгэл',
     excerpt: 'Шинэ гэр бүлээр амьтан авахын өмнө хийх ёстой бэлтгэл.',
-    imageUrl: '/api/placeholder/400/300',
+    imageUrl: 'https://images.unsplash.com/photo-1601758123927-4a2264f6a1f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
     category: 'BLOG',
     publishedAt: '2024-01-12T16:45:00.000Z',
     author: {
       id: '4',
       name: 'Ц.Батбаяр',
-      avatar: '/api/placeholder/40/40'
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80'
     },
     likeCount: 134,
     commentCount: 9
@@ -75,13 +75,13 @@ const mockBlogData: TArticle[] = [
     id: '5',
     title: 'Зуны амьтны арчилгаа',
     excerpt: 'Зуны халуунд амьтдаа хэрхэн арчлах талаар.',
-    imageUrl: '/api/placeholder/400/300',
+    imageUrl: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
     category: 'BLOG',
     publishedAt: '2024-01-11T09:20:00.000Z',
     author: {
       id: '5',
       name: 'Г.Энхбаяр',
-      avatar: '/api/placeholder/40/40'
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80'
     },
     likeCount: 98,
     commentCount: 7
@@ -90,13 +90,13 @@ const mockBlogData: TArticle[] = [
     id: '6',
     title: 'Амьтны сэтгэл зүйн эрүүл мэнд',
     excerpt: 'Гэрийн тэжээвэр амьтны сэтгэл зүйн байдалд анхаарах нь.',
-    imageUrl: '/api/placeholder/400/300',
+    imageUrl: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80',
     category: 'BLOG',
     publishedAt: '2024-01-10T11:15:00.000Z',
     author: {
       id: '6',
       name: 'М.Цэцэгмаа',
-      avatar: '/api/placeholder/40/40'
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80'
     },
     likeCount: 176,
     commentCount: 15

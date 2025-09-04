@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { CheckCircle, Users, Shield } from 'lucide-react';
@@ -41,10 +42,10 @@ export const Hero: React.FC = () => {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="primary" size="lg" className="text-base px-8">
+              <Button variant="primary" size="lg" className="text-base px-8 font-semibold">
                 Community-д нэгдэх
               </Button>
-              <Button variant="secondary" size="lg" className="text-base px-8">
+              <Button variant="secondary" size="lg" className="text-base px-8 font-semibold">
                 Байгууллагаа бүртгүүлэх
               </Button>
             </div>
@@ -60,16 +61,16 @@ export const Hero: React.FC = () => {
 
           {/* Hero Image */}
           <div className="relative">
-            <div className="aspect-square lg:aspect-video rounded-3xl bg-gradient-to-br from-blue-100 to-green-100 overflow-hidden">
-              {/* Placeholder for hero image */}
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="w-24 h-24 bg-blue-200 rounded-full mx-auto flex items-center justify-center">
-                    <Users size={48} className="text-blue-600" />
-                  </div>
-                  <p className="text-gray-600 font-medium">Амьтанд хайртай нэгдэл</p>
-                </div>
-              </div>
+            <div className="aspect-square lg:aspect-video rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=900&q=80"
+                alt="Амьтанд хайртай гэр бүл: нохой, муур, хүүхдүүдтэй баярлаж байгаа зураг"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
           </div>
         </div>

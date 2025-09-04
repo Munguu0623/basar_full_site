@@ -10,6 +10,7 @@ interface BadgeProps {
 
 export const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', className }) => {
   const variants = {
+    
     news: 'bg-orange-100 text-orange-800',
     blog: 'bg-blue-100 text-blue-800',
     photo: 'bg-purple-100 text-purple-800',

@@ -4,6 +4,14 @@
   :root {
     --font-inter: 'Inter', system-ui, sans-serif;
     --font-poppins: 'Poppins', system-ui, sans-serif;
+    
+    /* BASAR Brand Colors */
+    --basar-blue: #278EE8;
+    --basar-blue-hover: #1e7bd6;
+    --basar-blue-active: #1a6dbf;
+    --basar-orange: #F48C06;
+    --basar-orange-hover: #e07b00;
+    --basar-orange-active: #cc6d00;
   }
   
   html {

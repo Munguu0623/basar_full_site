@@ -15,21 +15,21 @@ const mockNewsData: TArticle[] = [
     id: '1',
     title: 'Амьтны эмнэлгийн шинэ үйлчилгээ нээгдлээ',
     excerpt: 'Улаанбаатар хотын төвд амьтны эмнэлгийн шинэ салбар нээгдэж, 24 цагийн турш үйлчилгээ үзүүлэх боллоо.',
-    imageUrl: '/api/placeholder/600/400',
+    imageUrl: 'https://www.workingnurse.com/wp-content/uploads/2025/01/Therapy-CHLA.jpg',
     category: 'NEWS',
     publishedAt: '2024-01-15T08:00:00.000Z',
     tags: ['эмнэлэг', 'үйлчилгээ'],
     author: {
       id: '1',
       name: 'Б.Болдбаатар',
-      avatar: '/api/placeholder/40/40'
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40&q=80'
     }
   },
   {
     id: '2',
     title: 'Гэрийн тэжээвэр амьтны үзэсгэлэн',
     excerpt: 'Энэ сарын 20-нд амьтны үзэсгэлэн зохион байгуулагдана.',
-    imageUrl: '/api/placeholder/300/200',
+    imageUrl: 'https://images.unsplash.com/photo-1415369629372-26f2fe60c467?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80',
     category: 'NEWS',
     publishedAt: '2024-01-14T10:30:00.000Z'
   },
@@ -37,7 +37,7 @@ const mockNewsData: TArticle[] = [
     id: '3',
     title: 'Амьтны хоол тэжээлийн шинэ бүтээгдэхүүн',
     excerpt: 'Органик амьтны хоол үйлдвэрлэгч компани шинэ бүтээгдэхүүнээ танилцуулжээ.',
-    imageUrl: '/api/placeholder/300/200',
+    imageUrl: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80',
     category: 'NEWS',
     publishedAt: '2024-01-13T14:15:00.000Z'
   },
@@ -45,7 +45,7 @@ const mockNewsData: TArticle[] = [
     id: '4',
     title: 'Нохойн сахилга батын үндсэн зарчмууд',
     excerpt: 'Гэрийн тэжээвэр нохойг зөв сахих арга барил.',
-    imageUrl: '/api/placeholder/300/200',
+    imageUrl: 'https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80',
     category: 'BLOG',
     publishedAt: '2024-01-12T16:45:00.000Z'
   },
@@ -53,7 +53,7 @@ const mockNewsData: TArticle[] = [
     id: '5',
     title: 'Муурны эрүүл мэндийн шалгалт',
     excerpt: 'Муурын эрүүл мэндийг хэрхэн хадгалах талаар.',
-    imageUrl: '/api/placeholder/300/200',
+    imageUrl: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80',
     category: 'BLOG',
     publishedAt: '2024-01-11T09:20:00.000Z'
   }
