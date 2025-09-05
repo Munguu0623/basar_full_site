@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
 import BlogList from '@/components/blog/BlogList';
+import SkeletonList from '@/components/skeletons/SkeletonList';
 
 export const metadata: Metadata = {
   title: 'Блог | BASAR',
@@ -260,7 +261,9 @@ export default function BlogPage() {
         </div>
 
         {/* Blog List with Pagination */}
-        <BlogList />
+        <Suspense fallback={<SkeletonList />}>
+          <BlogList />
+        </Suspense>
       </div>
     </div>
   );

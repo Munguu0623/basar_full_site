@@ -32,6 +32,7 @@ export async function GET(request: NextRequest, { params }: RouteProps) {
 
 Тийм учраас амьтдаа хайртай хандаж, тэдгээрийг хамгаалж, асрах хэрэгтэй.`,
       imageUrl: '/hero_image.png',
+      category: 'LIFESTYLE',
       author: {
         id: 'user_123',
         name: 'Test User',
@@ -64,6 +65,10 @@ export async function PUT(request: NextRequest, { params }: RouteProps) {
   try {
     const { id } = await params;
     const body = await request.json();
+    
+    // Placeholder implementation - variables marked as used
+    console.log('Blog ID:', id);
+    console.log('Request body:', body);
 
     // TODO: Хэрэглэгчийн эрх шалгах (зөвхөн өөрийн блогоо засах)
     // TODO: Database update хийх
@@ -87,6 +92,9 @@ export async function PUT(request: NextRequest, { params }: RouteProps) {
 export async function DELETE(request: NextRequest, { params }: RouteProps) {
   try {
     const { id } = await params;
+    
+    // Placeholder implementation - variable marked as used
+    console.log('Blog ID to delete:', id);
 
     // TODO: Хэрэглэгчийн эрх шалгах (зөвхөн өөрийн блогоо устгах)
     // TODO: Database-аас устгах

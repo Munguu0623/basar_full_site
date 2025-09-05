@@ -91,3 +91,40 @@ export async function createBlog(data: TBlogCreateRequest): Promise<TBlogRespons
     body: JSON.stringify(data),
   });
 }
+
+// Блогийн жагсаалт авах
+interface BlogListParams {
+  page?: number;
+  pageSize?: number;
+  category?: TBlogResponse['category'];
+  search?: string;
+}
+
+interface BlogListResponse {
+  blogs: TBlogResponse[];
+  pagination: {
+    page: number;
+    pageSize: number;
+    total: number;
+    totalPages: number;
+  };
+}
+
+export async function getBlogList(params: BlogListParams = {}): Promise<BlogListResponse> {
+  const { page = 1, pageSize = 6, category, search } = params;
+  
+  const searchParams = new URLSearchParams({
+    page: page.toString(),
+    pageSize: pageSize.toString(),
+  });
+  
+  if (category) {
+    searchParams.append('category', category);
+  }
+  
+  if (search) {
+    searchParams.append('search', search);
+  }
+  
+  return api<BlogListResponse>(`/blog?${searchParams.toString()}`);
+}

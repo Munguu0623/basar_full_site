@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Badge } from '@/components/ui/Badge';
 
 interface ArticleCardProps {
   id: string;
@@ -54,7 +53,6 @@ const categoryGradients = {
 } as const;
 
 export default function ArticleCard({
-  id,
   title,
   excerpt,
   imageUrl,

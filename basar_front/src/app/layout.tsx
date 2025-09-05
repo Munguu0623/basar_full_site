@@ -32,9 +32,10 @@ export const metadata: Metadata = {
     title: "BASAR - Амьтанд хайртай нэгдэл",
     description: "Найдвартай мэдээ унш, туршлагаа хуваалц, verified байгууллагыг ол",
   },
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
 };
+
+export const viewport = "width=device-width, initial-scale=1";
 
 export default function RootLayout({
   children,

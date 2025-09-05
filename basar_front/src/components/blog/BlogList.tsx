@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { TBlogResponse } from '@/types';
+import { getBlogList } from '@/lib/api';
 import ArticleCard from '@/components/common/ArticleCard';
 import Pagination from '@/components/common/Pagination';
 import SkeletonList from '@/components/skeletons/SkeletonList';
@@ -24,197 +25,6 @@ interface BlogListProps {
   initialData?: BlogListResponse;
   categoryFilter?: TBlogResponse['category'];
   searchQuery?: string;
-}
-
-// Mock API function - Бодитоор API дуудах ёстой
-async function getBlogList(params: BlogListParams = {}): Promise<BlogListResponse> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 800));
-
-  // Mock data - бодитоор API-аас авах ёстой
-  const allBlogs: TBlogResponse[] = [
-    {
-      id: 'blog_1',
-      title: 'Амьтан хайрлах нь хэрхэн амьдралыг баялагжуулдаг вэ?',
-      content: 'Амьтан хайрлах бол хүний амьдралд маш чухал зүйл юм. Амьтад бидний найз нөхөд, гэр бүлийн гишүүд болдог...',
-      excerpt: 'Амьтан хайрлах бол хүний амьдралд маш чухал зүйл юм. Тэд бидэнд хайр энэрэл, баяр баясгалан авчирдаг.',
-      imageUrl: '/hero_image.png',
-      category: 'LIFESTYLE',
-      author: { id: 'user_1', name: 'Б.Болд' },
-      createdAt: '2025-01-15T10:30:00Z',
-      tags: ['амьтан', 'хайр', 'асрамж', 'амьдралын_хэв_маяг'],
-    },
-    {
-      id: 'blog_2', 
-      title: 'Нохойн сургалтын үндсэн зарчмууд',
-      content: 'Нохойгоо зөв сургах нь маш чухал. Тэвчээртэй байж, тогтмол дасгал хийлгэх хэрэгтэй...',
-      excerpt: 'Нохойгоо зөв сургах нь маш чухал. Тэвчээртэй байж, тогтмол дасгал хийлгэх хэрэгтэй.',
-      imageUrl: null,
-      category: 'TRAINING',
-      author: { id: 'user_2', name: 'С.Сарангэрэл' },
-      createdAt: '2025-01-14T15:20:00Z',
-      tags: ['нохой', 'сургалт', 'дрессура'],
-    },
-    {
-      id: 'blog_3',
-      title: 'Муурны эрүүл мэндийн анхны шинж тэмдэг',
-      content: 'Муурны эрүүл мэндийн шинж тэмдгүүдийг анхааралтай ажиглах хэрэгтэй. Хэрэв дараах шинж тэмдгүүд илэрвэл...',
-      excerpt: 'Муурны эрүүл мэндийн шинж тэмдгүүдийг анхааралтай ажиглах хэрэгтэй. Эрт илрүүлэх нь чухал.',
-      imageUrl: '/hero_image.png',
-      category: 'HEALTH',
-      author: { id: 'user_3', name: 'О.Оюунбилэг' },
-      createdAt: '2025-01-13T09:45:00Z',
-      tags: ['муур', 'эрүүл_мэнд', 'эмч', 'шинж_тэмдэг'],
-    },
-    {
-      id: 'blog_4',
-      title: 'Амьтан үрчлэхэд анхаарах зүйлс',
-      content: 'Амьтан үрчлэх нь их хариуцлагатай ажил. Өөрийн хүсэл сонирхол, амьдралын нөхцөлийг сайн бодож үзэх хэрэгтэй...',
-      excerpt: 'Амьтан үрчлэх нь их хариуцлагатай ажил. Өөрийн амьдралын нөхцөлийг сайн бодож үзэх хэрэгтэй.',
-      imageUrl: null,
-      category: 'ADOPTION',
-      author: { id: 'user_4', name: 'Д.Дорж' },
-      createdAt: '2025-01-12T11:15:00Z',
-      tags: ['үрчлэлт', 'хариуцлага', 'сонголт'],
-    },
-    {
-      id: 'blog_5',
-      title: 'Миний муурын гайхамшигт түүх',
-      content: 'Энэ бол миний хайрт муур Мишээгийн түүх юм. Түүнийг анх олж авснаас хойш бидний амьдрал...',
-      excerpt: 'Энэ бол миний хайрт муур Мишээгийн түүх юм. Түүнийг анх олж авснаас хойш бидний амьдрал өөрчлөгдсөн.',
-      imageUrl: '/hero_image.png',
-      category: 'STORIES',
-      author: { id: 'user_5', name: 'Б.Баярмаа' },
-      createdAt: '2025-01-11T16:30:00Z',
-      tags: ['түүх', 'муур', 'туршлага'],
-    },
-    {
-      id: 'blog_6',
-      title: '10 хялбар зөвлөгөө: Гэрийн амьтныг өвлөөр арчлах',
-      content: 'Өвлийн улиралд гэрийн тэжээвэр амьтдыг арчлахад анхаарах ёстой зүйлүүдийг энд танилцуулж байна...',
-      excerpt: 'Өвлийн улиралд гэрийн тэжээвэр амьтдыг арчлахад анхаарах ёстой 10 чухал зөвлөгөө.',
-      imageUrl: null,
-      category: 'TIPS',
-      author: { id: 'user_6', name: 'Г.Ганбаатар' },
-      createdAt: '2025-01-10T08:45:00Z',
-      tags: ['зөвлөгөө', 'өвөл', 'арчлага', 'эрүүл_мэнд'],
-    },
-    {
-      id: 'blog_7',
-      title: 'Амьтны хоол тэжээлийн гурван алтан дүрэм',
-      content: 'Амьтдыг зөв тэжээх нь эрүүл мэндэд маш чухал нөлөө үзүүлдэг. Үүний тулд мэдэх ёстой үндсэн зарчмууд...',
-      excerpt: 'Амьтдыг зөв тэжээх нь эрүүл мэндэд маш чухал. Гурван үндсэн зарчимыг мэдэх хэрэгтэй.',
-      imageUrl: '/hero_image.png',
-      category: 'HEALTH',
-      author: { id: 'user_7', name: 'Ц.Цэвээн' },
-      createdAt: '2025-01-09T14:20:00Z',
-      tags: ['хоол_тэжээл', 'эрүүл_мэнд', 'арчлага'],
-    },
-    {
-      id: 'blog_8',
-      title: 'Амьтны парк дахь миний анхны сайн дурын ажил',
-      content: 'Энэ бол амьтны парк дахь миний анхны сайн дурын ажлын түүх юм. Тэр өдрөөс хойш миний амьдрал...',
-      excerpt: 'Амьтны парк дахь анхны сайн дурын ажил миний амьдралыг бүрэн өөрчилсөн түүх.',
-      imageUrl: null,
-      category: 'STORIES',
-      author: { id: 'user_8', name: 'А.Алтан' },
-      createdAt: '2025-01-08T11:10:00Z',
-      tags: ['сайн_дурын_ажил', 'туршлага', 'амьтны_парк'],
-    },
-    {
-      id: 'blog_9',
-      title: 'Зуны халуунд амьтдыг хэрхэн арчлах вэ?',
-      content: 'Зуны халуун цаг агаарт амьтдын эрүүл мэнд, аюулгүй байдлыг хангахад анхаарах ёстой зүйлүүд...',
-      excerpt: 'Зуны халуун цаг агаарт амьтдын эрүүл мэнд, аюулгүй байдлыг хангахын тулд тусгай арчлага хийх хэрэгтэй.',
-      imageUrl: '/hero_image.png',
-      category: 'HEALTH',
-      author: { id: 'user_9', name: 'Н.Нарантуяа' },
-      createdAt: '2025-01-07T13:25:00Z',
-      tags: ['зун', 'халуун', 'эрүүл_мэнд', 'арчлага'],
-    },
-    {
-      id: 'blog_10',
-      title: 'Тэжээвэр амьтны гэрэл зургийн 5 зөвлөгөө',
-      content: 'Амьтдын гоё зургийг авахын тулд мэдэх ёстой техник, арга барилууд. Тэдгээрийн хөдөлгөөн, зан төрхийг...',
-      excerpt: 'Амьтдын гоё зургийг авахын тулд мэдэх ёстой 5 чухал зөвлөгөө.',
-      imageUrl: null,
-      category: 'TIPS',
-      author: { id: 'user_10', name: 'Ө.Өнөрбаяр' },
-      createdAt: '2025-01-06T16:40:00Z',
-      tags: ['гэрэл_зураг', 'техник', 'зөвлөгөө'],
-    },
-    {
-      id: 'blog_11',
-      title: 'Манай гэрийн хамт амьдрагч - Шарын түүх',
-      content: 'Энэ бол манай гэрийн хамт амьдрагч нохой Шарын тухай түүх. Түүнийг гэрт авчирснаас хойшхи өөрчлөлтүүд...',
-      excerpt: 'Манай гэрийн хамт амьдрагч нохой Шарын тухай дурсамжтай түүх.',
-      imageUrl: '/hero_image.png',
-      category: 'STORIES',
-      author: { id: 'user_11', name: 'Б.Бямбаа' },
-      createdAt: '2025-01-05T12:15:00Z',
-      tags: ['түүх', 'нохой', 'гэр_бүл'],
-    },
-    {
-      id: 'blog_12',
-      title: 'Амьтны хоолны аллерги: Танихуйц шинж тэмдэг',
-      content: 'Амьтдын хоолны аллергийн шинж тэмдэг, шалтгаан, эмчилгээний аргуудын тухай дэлгэрэнгүй мэдээлэл...',
-      excerpt: 'Амьтдын хоолны аллергийг таних, эмчлэх аргын тухай чухал мэдээлэл.',
-      imageUrl: null,
-      category: 'HEALTH',
-      author: { id: 'user_12', name: 'Д.Дулмаа' },
-      createdAt: '2025-01-04T09:30:00Z',
-      tags: ['аллерги', 'хоол', 'эрүүл_мэнд', 'эмчилгээ'],
-    },
-    {
-      id: 'blog_13',
-      title: 'Амьтны сэтгэл зүйг ойлгох 7 арга',
-      content: 'Амьтдын зан байдал, сэтгэл санааны өөрчлөлтийг хэрхэн ойлгож, тэдэнтэй харилцах талаар...',
-      excerpt: 'Амьтдын сэтгэл зүй, зан байдлыг ойлгох практик зөвлөгөөнүүд.',
-      imageUrl: '/hero_image.png',
-      category: 'TIPS',
-      author: { id: 'user_13', name: 'Ц.Цагаан' },
-      createdAt: '2025-01-03T14:50:00Z',
-      tags: ['сэтгэл_зүй', 'зан_байдал', 'харилцаа'],
-    },
-    {
-      id: 'blog_14',
-      title: 'Эхний удаа амьтан үрчлэх: Бэлтгэл ажил',
-      content: 'Анх удаа амьтан үрчлэхэд хийх ёстой бэлтгэл ажлууд, худалдан авах зүйлс, гэрийн орчинг...',
-      excerpt: 'Анх удаа амьтан үрчлэхэд хийх ёстой бэлтгэл ажлын жагсаалт.',
-      imageUrl: null,
-      category: 'ADOPTION',
-      author: { id: 'user_14', name: 'А.Анхбаяр' },
-      createdAt: '2025-01-02T11:20:00Z',
-      tags: ['үрчлэлт', 'бэлтгэл', 'анхлан_суралцагч'],
-    }
-  ];
-
-  const { page = 1, pageSize = 6, category, search } = params;
-
-  // Filter by category
-  let filteredBlogs = category 
-    ? allBlogs.filter(blog => blog.category === category)
-    : allBlogs;
-
-  // Filter by search
-  if (search) {
-    const searchLower = search.toLowerCase();
-    filteredBlogs = filteredBlogs.filter(blog => 
-      blog.title.toLowerCase().includes(searchLower) ||
-      blog.excerpt?.toLowerCase().includes(searchLower) ||
-      blog.tags?.some(tag => tag.toLowerCase().includes(searchLower))
-    );
-  }
-
-  // Pagination
-  const startIndex = (page - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-  const blogs = filteredBlogs.slice(startIndex, endIndex);
-
-  return {
-    blogs,
-    totalCount: filteredBlogs.length,
-  };
 }
 
 export default function BlogList({
@@ -243,7 +53,7 @@ export default function BlogList({
       
       const response = await getBlogList(params);
       setBlogs(response.blogs);
-      setTotalCount(response.totalCount);
+      setTotalCount(response.pagination.total);
     } catch (err) {
       setError('Блог нийтлэлүүдийг ачаалахад алдаа гарлаа');
       console.error('Error fetching blogs:', err);

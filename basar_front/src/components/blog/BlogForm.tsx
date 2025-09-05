@@ -3,8 +3,6 @@
 import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { Button } from '@/components/ui/Button';
-import { Card, CardContent } from '@/components/ui/Card';
 import { createBlog } from '@/lib/api';
 import { TBlogCreateRequest } from '@/types';
 import { cn } from '@/lib/utils';
@@ -164,7 +162,6 @@ export const BlogForm: React.FC<BlogFormProps> = ({ className }) => {
   const formatNumberedList = () => insertTextAtCursor('\n1. ', '\n');
   const formatQuote = () => insertTextAtCursor('\n> ', '\n');
   const formatCode = () => insertTextAtCursor('`', '`');
-  const formatCodeBlock = () => insertTextAtCursor('\n```\n', '\n```\n');
 
   // Format line break
   const addLineBreak = () => {
@@ -504,7 +501,7 @@ export const BlogForm: React.FC<BlogFormProps> = ({ className }) => {
                   id="blog-category"
                   name="category"
                   value={formData.category}
-                  onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as any }))}
+                  onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as TBlogCreateRequest['category'] }))}
                   className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-pink-500/25 focus:border-pink-500 bg-white transition-all duration-300 text-base font-medium shadow-lg hover:border-pink-300 cursor-pointer"
                 >
                   <option value="LIFESTYLE">💫 Амьдралын хэв маяг</option>

@@ -4,6 +4,8 @@ import ArticleList from '@/components/news/ArticleList';
 import SkeletonList from '@/components/skeletons/SkeletonList';
 import { getNewsList } from '@/lib/api';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Мэдээ - BASAR',
   description: 'Амьтны эрүүл мэнд, сургалт, үрчлэлтийн талаарх хамгийн сүүлийн мэдээлэл',

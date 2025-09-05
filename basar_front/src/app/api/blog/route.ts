@@ -37,6 +37,7 @@ export async function POST(request: NextRequest) {
       title: body.title,
       content: body.content,
       imageUrl: body.imageUrl || null,
+      category: body.category || 'OTHER',
       author: {
         id: 'user_123', // Тухайн нэвтэрсэн хэрэглэгчийн ID
         name: 'Test User', // Тухайн нэвтэрсэн хэрэглэгчийн нэр
@@ -68,28 +69,77 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1');
-    const pageSize = parseInt(searchParams.get('pageSize') || '10');
+    const pageSize = parseInt(searchParams.get('pageSize') || '6');
+    const category = searchParams.get('category') as TBlogResponse['category'] | null;
+    const search = searchParams.get('search');
 
     // TODO: Database-аас блог нийтлэлүүдийг авах
     // Одоогоор mock data буцаах
-    const mockBlogs: TBlogResponse[] = [
+    const allMockBlogs: TBlogResponse[] = [
       {
         id: 'blog_1',
-        title: 'Амьтан хайрлах нь',
-        content: 'Амьтан хайрлах бол маш чухал зүйл...',
-        imageUrl: null,
-        author: { id: 'user_1', name: 'Test User' },
-        createdAt: new Date().toISOString(),
+        title: 'Амьтан хайрлах нь хэрхэн амьдралыг баялагжуулдаг вэ?',
+        content: 'Амьтан хайрлах бол хүний амьдралд маш чухал зүйл юм...',
+        excerpt: 'Амьтан хайрлах бол хүний амьдралд маш чухал зүйл юм.',
+        imageUrl: '/hero_image.png',
+        category: 'LIFESTYLE',
+        author: { id: 'user_1', name: 'Б.Болд' },
+        createdAt: '2025-01-15T10:30:00Z',
+        tags: ['амьтан', 'хайр', 'асрамж'],
       },
+      {
+        id: 'blog_2',
+        title: 'Нохойн сургалтын үндсэн зарчмууд',
+        content: 'Нохойгоо зөв сургах нь маш чухал...',
+        excerpt: 'Нохойгоо зөв сургах нь маш чухал.',
+        imageUrl: null,
+        category: 'TRAINING',
+        author: { id: 'user_2', name: 'С.Сарангэрэл' },
+        createdAt: '2025-01-14T15:20:00Z',
+        tags: ['нохой', 'сургалт'],
+      },
+      {
+        id: 'blog_3',
+        title: 'Муурны эрүүл мэндийн анхны шинж тэмдэг',
+        content: 'Муурны эрүүл мэндийн шинж тэмдгүүдийг анхааралтай ажиглах хэрэгтэй...',
+        excerpt: 'Муурны эрүүл мэндийн шинж тэмдгүүдийг анхааралтай ажиглах хэрэгтэй.',
+        imageUrl: '/hero_image.png',
+        category: 'HEALTH',
+        author: { id: 'user_3', name: 'О.Оюунбилэг' },
+        createdAt: '2025-01-13T09:45:00Z',
+        tags: ['муур', 'эрүүл_мэнд'],
+      }
     ];
 
+    // Filter by category
+    let filteredBlogs = category 
+      ? allMockBlogs.filter(blog => blog.category === category)
+      : allMockBlogs;
+
+    // Filter by search
+    if (search) {
+      const searchLower = search.toLowerCase();
+      filteredBlogs = filteredBlogs.filter(blog => 
+        blog.title.toLowerCase().includes(searchLower) ||
+        blog.excerpt?.toLowerCase().includes(searchLower) ||
+        blog.tags?.some(tag => tag.toLowerCase().includes(searchLower))
+      );
+    }
+
+    // Pagination
+    const total = filteredBlogs.length;
+    const totalPages = Math.ceil(total / pageSize);
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const paginatedBlogs = filteredBlogs.slice(startIndex, endIndex);
+
     return NextResponse.json({
-      blogs: mockBlogs,
+      blogs: paginatedBlogs,
       pagination: {
         page,
         pageSize,
-        total: 1,
-        totalPages: 1,
+        total,
+        totalPages,
       },
     });
 
