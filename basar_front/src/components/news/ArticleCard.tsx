@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { TNewsListItem } from '@/types/news';
@@ -26,20 +27,24 @@ const categoryLabels = {
 
 export default function ArticleCard({ article, href }: ArticleCardProps) {
   const { title, excerpt, imageUrl, category, publishedAt } = article;
+  const [formattedDate, setFormattedDate] = useState<string>('');
+  const [isClient, setIsClient] = useState(false);
   
-  // Огноо форматлах
-  const formatDate = (dateString: string) => {
+  // Client-side дээр огноо форматлах
+  useEffect(() => {
+    setIsClient(true);
     try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('mn-MN', {
+      const date = new Date(publishedAt);
+      const formatted = date.toLocaleDateString('mn-MN', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
       });
+      setFormattedDate(formatted);
     } catch {
-      return dateString;
+      setFormattedDate(publishedAt);
     }
-  };
+  }, [publishedAt]);
 
   // Alt текст үүсгэх
   const imageAlt = `${categoryLabels[category]} - ${title}`;
@@ -106,13 +111,14 @@ export default function ArticleCard({ article, href }: ArticleCardProps) {
           {/* Огноо */}
           <div className="flex items-center justify-between mb-4">
             <time
+              title={publishedAt}
               dateTime={publishedAt}
               className="text-sm text-gray-500 font-medium flex items-center"
             >
               <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              {formatDate(publishedAt)}
+              {isClient ? formattedDate : publishedAt}
             </time>
             
             {/* Read time estimate */}
