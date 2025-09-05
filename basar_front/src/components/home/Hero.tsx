@@ -61,16 +61,37 @@ export const Hero: React.FC = () => {
 
           {/* Hero Image */}
           <div className="relative">
-            <div className="aspect-square lg:aspect-video rounded-3xl overflow-hidden shadow-2xl">
-              <Image
-                src="/hero_image.png"
-                alt="Амьтанд хайртай гэр бүл: нохой, муур, хүүхдүүдтэй баярлаж байгаа зураг"
-                fill
-                className="object-cover"
-                priority
-                sizes="(min-width: 680px) 50vw, 10vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            <Image
+              src="/hero_image.png"
+              alt="Амьтанд хайртай гэр бүл: нохой, муур, хүүхдүүдтэй баярлаж байгаа зураг"
+              className="object-cover rounded-2xl"
+              priority
+              width={500}
+              height={500}
+            />
+            {/* Text overlay with animations */}
+            <div className="absolute top-2 left-14 bg-gradient-to-br from-white/95 via-blue-50/90 to-purple-50/95 backdrop-blur-lg rounded-3xl px-6 py-4 shadow-2xl border-2 border-white/40 animate-float">
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <div className="w-4 h-4 bg-gradient-to-r from-green-400 to-blue-500 rounded-full animate-ping"></div>
+                  <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-green-500 to-blue-600 rounded-full"></div>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm text-gray-700 font-medium animate-fade-in flex items-center gap-1">
+                    <span>Сайн байна уу?</span>
+                    <span className="animate-bounce">👋</span>
+                  </p>
+                  <p className="text-xl font-bold text-gray-800">
+                    Намайг <span className="text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text animate-pulse font-black text-2xl">БАСАР</span> гэдэг
+                  </p>
+                </div>
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full opacity-80 animate-pulse"></div>
+              <div className="absolute -bottom-1 right-2 w-4 h-4 bg-gradient-to-r from-pink-400 to-red-500 rounded-full opacity-60 animate-bounce"></div>
+              
+              {/* Speech bubble tail with gradient */}
+              <div className="absolute -bottom-3 left-8 w-6 h-6 bg-gradient-to-br from-white/95 via-blue-50/90 to-purple-50/95 transform rotate-45 border-r-2 border-b-2 border-white/40"></div>
             </div>
           </div>
         </div>

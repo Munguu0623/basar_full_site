@@ -74,14 +74,14 @@ export const Header: React.FC = () => {
 
           {/* Search & Auth */}
           <div className="flex items-center space-x-3">
-            <div className="hidden lg:flex items-center bg-gray-50 rounded-full px-4 py-2 min-w-48 border border-gray-200">
+            {/* <div className="hidden lg:flex items-center bg-gray-50 rounded-full px-4 py-2 min-w-48 border border-gray-200">
               <Search size={18} className="text-gray-400 mr-2" />
               <input
                 type="text"
                 placeholder="Хайх..."
                 className="bg-transparent flex-1 outline-none text-sm"
               />
-            </div>
+            </div> */}
             
             <Button variant="ghost" size="md" className="lg:hidden p-2">
               <Search size={20} />
