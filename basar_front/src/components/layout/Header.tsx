@@ -59,9 +59,9 @@ export const Header: React.FC = () => {
             <Link href="/news" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Мэдээ
             </Link>
-            <a href="/blog" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
+            <Link href="/blog" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Блог
-            </a>
+            </Link>
             <a href="/organizations" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Байгууллагууд
             </a>

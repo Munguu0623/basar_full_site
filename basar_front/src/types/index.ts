@@ -53,3 +53,24 @@ export type TTestimonial = {
   content: string;
   role?: string;
 };
+
+// Блог нийтлэлийн типүүд (BLOG-1)
+export type TBlogCreateRequest = {
+  title: string;
+  content: string;
+  imageUrl?: string | null;
+  category?: 'LIFESTYLE' | 'TIPS' | 'STORIES' | 'HEALTH' | 'TRAINING' | 'ADOPTION' | 'OTHER';
+  tags?: string[];
+};
+
+export type TBlogResponse = {
+  id: string;
+  title: string;
+  content: string;
+  imageUrl?: string | null;
+  category: 'LIFESTYLE' | 'TIPS' | 'STORIES' | 'HEALTH' | 'TRAINING' | 'ADOPTION' | 'OTHER';
+  author: { id: string; name: string };
+  createdAt: string;
+  tags?: string[];
+  excerpt?: string;
+};

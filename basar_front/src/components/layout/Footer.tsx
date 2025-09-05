@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
             <h4 className="font-semibold text-gray-900 mb-4">Холбоосууд</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/news" className="text-gray-600 hover:text-gray-900">Мэдээ</Link></li>
-              <li><a href="/blog" className="text-gray-600 hover:text-gray-900">Блог</a></li>
+              <li><Link href="/blog" className="text-gray-600 hover:text-gray-900">Блог</Link></li>
               <li><a href="/organizations" className="text-gray-600 hover:text-gray-900">Байгууллагууд</a></li>
             </ul>
           </div>

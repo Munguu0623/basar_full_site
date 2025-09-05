@@ -7,6 +7,7 @@ interface PaginationProps {
   pageSize: number;
   total: number;
   onPageChange?: (page: number) => void;
+  itemName?: string; // "мэдээ", "блог", "нийтлэл" г.м
 }
 
 export default function Pagination({
@@ -14,6 +15,7 @@ export default function Pagination({
   pageSize,
   total,
   onPageChange,
+  itemName = 'нийтлэл',
 }: PaginationProps) {
   const totalPages = Math.ceil(total / pageSize);
   
@@ -145,7 +147,7 @@ export default function Pagination({
 
       {/* Хуудасны мэдээлэл */}
       <div className="ml-6 text-sm text-gray-700">
-        <span className="font-medium">{total}</span> мэдээнээс{' '}
+        <span className="font-medium">{total}</span> {itemName}-нээс{' '}
         <span className="font-medium">
           {(page - 1) * pageSize + 1}-{Math.min(page * pageSize, total)}
         </span>{' '}

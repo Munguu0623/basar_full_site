@@ -1,5 +1,5 @@
 // API клиент функцүүд
-import { TArticle, TOrganization, TCommunityStats } from '@/types';
+import { TArticle, TOrganization, TCommunityStats, TBlogCreateRequest, TBlogResponse } from '@/types';
 import { TNewsListResponse, TNewsListParams, TNewsDetail } from '@/types/news';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || (
@@ -82,4 +82,12 @@ export async function getNewsList(params: TNewsListParams = {}): Promise<TNewsLi
 // Мэдээний дэлгэрэнгүй авах (slug)
 export async function getNewsDetail(slug: string): Promise<TNewsDetail> {
   return api<TNewsDetail>(`/news/${slug}`);
+}
+
+// Блог нийтлэл үүсгэх (BLOG-1)
+export async function createBlog(data: TBlogCreateRequest): Promise<TBlogResponse> {
+  return api<TBlogResponse>('/blog', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
 }

@@ -160,6 +160,7 @@ export default function ArticleList({
         pageSize={pageSize}
         total={totalCount}
         onPageChange={handlePageChange}
+        itemName="мэдээ"
       />
     </div>
   );
