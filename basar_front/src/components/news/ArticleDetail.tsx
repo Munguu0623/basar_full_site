@@ -148,13 +148,13 @@ export default function ArticleDetail({ article }: ArticleDetailProps) {
     // TODO: API дуудалт нэмэх
     await new Promise(resolve => setTimeout(resolve, 1000)); // Mock delay
     setShowCommentForm(false);
-    console.log('Сэтгэгдэл амжилттай илгээгдлээ');
+    console.log('Сэтгэгдэл амжилттай илгээгдлээ:', commentText);
   };
 
   const handleReplySubmit = async (commentId: string, replyText: string) => {
     // TODO: API дуудалт нэмэх
     await new Promise(resolve => setTimeout(resolve, 1000)); // Mock delay
-    console.log(`Reply илгээгдлээ: ${commentId}`);
+    console.log(`Reply илгээгдлээ: ${commentId}`, replyText);
   };
 
   const handleCommentLike = (commentId: string) => {

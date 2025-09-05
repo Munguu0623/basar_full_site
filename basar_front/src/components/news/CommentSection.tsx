@@ -88,6 +88,12 @@ export default function CommentSection({
           </svg>
           Сэтгэгдэлүүд ({comments.length})
         </h3>
+        <button 
+          onClick={onToggleComments}
+          className="text-sm text-blue-600 hover:text-blue-800"
+        >
+          Хаах
+        </button>
       </div>
 
       {/* Comments List */}

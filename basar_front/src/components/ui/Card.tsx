@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 interface CardProps {
@@ -30,10 +31,11 @@ interface CardImageProps {
 export const CardImage: React.FC<CardImageProps> = ({ src, alt, className }) => {
   return (
     <div className={cn('relative w-full aspect-video overflow-hidden rounded-t-2xl', className)}>
-      <img
+      <Image
         src={src}
         alt={alt}
-        className="w-full h-full object-cover"
+        fill
+        className="object-cover"
         loading="lazy"
       />
     </div>

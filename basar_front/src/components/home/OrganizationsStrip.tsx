@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { TOrganization } from '@/types';
-import { getVerifiedOrganizations } from '@/lib/api';
+// import { getVerifiedOrganizations } from '@/lib/api'; // Unused for now
 import { Building, MapPin, ArrowRight } from 'lucide-react';
 
 // Mock data for demo
@@ -114,9 +115,11 @@ export const OrganizationsStrip: React.FC = () => {
                 <div className="relative mb-4">
                   <div className="w-16 h-16 bg-gray-100 rounded-2xl mx-auto flex items-center justify-center overflow-hidden">
                     {org.logo ? (
-                      <img 
+                      <Image 
                         src={org.logo} 
                         alt={`${org.name} лого`}
+                        width={64}
+                        height={64}
                         className="w-full h-full object-cover"
                       />
                     ) : (

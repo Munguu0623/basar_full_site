@@ -98,12 +98,12 @@ const mockNewsDetails: Record<string, TNewsDetail> = {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
-  const { slug } = params;
+  const { slug } = await params;
   
   // ID эсвэл slug-аар хайх
-  let newsDetail = mockNewsDetails[slug];
+  let newsDetail: TNewsDetail | undefined = mockNewsDetails[slug];
   
   // Хэрэв ID-аар олдохгүй бол slug-аар хайх
   if (!newsDetail) {

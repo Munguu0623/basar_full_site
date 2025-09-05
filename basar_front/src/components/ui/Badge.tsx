@@ -26,6 +26,7 @@ const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', className,
         variants[variant],
         className
       )}
+      title={title}
     >
       {variant === 'verified' && <Check size={12} />}
       {children}

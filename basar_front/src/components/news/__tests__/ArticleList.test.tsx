@@ -18,13 +18,13 @@ vi.mock('@/lib/api', () => ({
 
 // Mock child components
 vi.mock('../ArticleCard', () => ({
-  default: ({ article }: any) => (
+  default: ({ article }: { article: { title: string } }) => (
     <div data-testid="article-card">{article.title}</div>
   ),
 }));
 
 vi.mock('../../common/Pagination', () => ({
-  default: ({ page, total }: any) => (
+  default: ({ page, total }: { page: number; total: number }) => (
     <div data-testid="pagination">Page {page} of {Math.ceil(total / 10)}</div>
   ),
 }));
@@ -68,8 +68,8 @@ const mockArticles: TNewsListResponse = {
 describe('ArticleList', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (useRouter as any).mockReturnValue(mockRouter);
-    (useSearchParams as any).mockReturnValue(mockSearchParams);
+    (useRouter as jest.MockedFunction<typeof useRouter>).mockReturnValue(mockRouter);
+    (useSearchParams as jest.MockedFunction<typeof useSearchParams>).mockReturnValue(mockSearchParams);
     mockSearchParams.get.mockReturnValue('1');
   });
 
@@ -82,7 +82,7 @@ describe('ArticleList', () => {
   });
 
   it('shows loading state when fetching data', async () => {
-    (getNewsList as any).mockImplementation(() => 
+    (getNewsList as jest.MockedFunction<typeof getNewsList>).mockImplementation(() => 
       new Promise(resolve => setTimeout(() => resolve(mockArticles), 100))
     );
 
@@ -96,7 +96,7 @@ describe('ArticleList', () => {
   });
 
   it('shows empty state when no articles', async () => {
-    (getNewsList as any).mockResolvedValue({
+    (getNewsList as jest.MockedFunction<typeof getNewsList>).mockResolvedValue({
       items: [],
       totalCount: 0,
     });
@@ -109,7 +109,7 @@ describe('ArticleList', () => {
   });
 
   it('shows error state and retry functionality', async () => {
-    (getNewsList as any).mockRejectedValue(new Error('API Error'));
+    (getNewsList as jest.MockedFunction<typeof getNewsList>).mockRejectedValue(new Error('API Error'));
 
     render(<ArticleList />);
 
@@ -120,7 +120,7 @@ describe('ArticleList', () => {
   });
 
   it('fetches data with correct parameters', async () => {
-    (getNewsList as any).mockResolvedValue(mockArticles);
+    (getNewsList as jest.MockedFunction<typeof getNewsList>).mockResolvedValue(mockArticles);
 
     render(
       <ArticleList 
@@ -141,7 +141,7 @@ describe('ArticleList', () => {
 
   it('handles page changes correctly', async () => {
     mockSearchParams.get.mockReturnValue('2');
-    (getNewsList as any).mockResolvedValue(mockArticles);
+    (getNewsList as jest.MockedFunction<typeof getNewsList>).mockResolvedValue(mockArticles);
 
     render(<ArticleList />);
 

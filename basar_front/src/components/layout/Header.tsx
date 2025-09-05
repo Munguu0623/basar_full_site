@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Search, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -49,15 +50,15 @@ export const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
-            <a href="/" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
+            <Link href="/" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Нүүр
-            </a>
+            </Link>
             <a href="/animals" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Амьтад
             </a>
-            <a href="/news" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
+            <Link href="/news" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Мэдээ
-            </a>
+            </Link>
             <a href="/blog" className="px-4 py-2 text-gray-700 hover:text-[#278EE8] hover:bg-blue-50 rounded-lg font-medium transition-colors font-thin">
               Блог
             </a>

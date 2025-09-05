@@ -5,7 +5,7 @@ import { Card, CardImage, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { TArticle } from '@/types';
-import { getTrendingBlogs } from '@/lib/api';
+// import { getTrendingBlogs } from '@/lib/api'; // Unused for now
 import { formatDate, formatNumber } from '@/lib/utils';
 import { Calendar, Heart, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 

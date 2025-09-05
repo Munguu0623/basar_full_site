@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { TCommunityStats, TTestimonial } from '@/types';
-import { getCommunityStats } from '@/lib/api';
+// import { getCommunityStats } from '@/lib/api'; // Unused for now
 import { formatNumber } from '@/lib/utils';
 import { Users, FileText, Building, Quote } from 'lucide-react';
 
@@ -152,15 +153,17 @@ export const CommunityProof: React.FC = () => {
               </div>
               
               <p className="text-gray-700 mb-6 leading-relaxed">
-                "{testimonial.content}"
+                &ldquo;{testimonial.content}&rdquo;
               </p>
               
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
                   {testimonial.avatar ? (
-                    <img 
+                    <Image 
                       src={testimonial.avatar} 
                       alt={testimonial.name}
+                      width={48}
+                      height={48}
                       className="w-full h-full object-cover"
                     />
                   ) : (

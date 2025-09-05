@@ -28,10 +28,7 @@ export function sanitizeHTML(html: string): string {
     ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
     
     // Хоосон element-үүдийг арилгах
-    KEEP_CONTENT: true,
-    
-    // Whitespace хадгалах
-    NORMALIZE_WHITESPACE: false
+    KEEP_CONTENT: true
   });
 }
 

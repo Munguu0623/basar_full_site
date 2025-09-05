@@ -1,13 +1,23 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Card, CardImage, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { TArticle } from '@/types';
-import { getFeaturedNews } from '@/lib/api';
+// import { getFeaturedNews } from '@/lib/api'; // Unused for now
 import { formatDate } from '@/lib/utils';
 import { Calendar, ArrowRight, Newspaper } from 'lucide-react';
+
+// Category-г Badge variant-руу map хийх функц
+const getCategoryVariant = (category: string): 'news' | 'blog' | 'default' => {
+  switch (category) {
+    case 'NEWS': return 'news';
+    case 'BLOG': return 'blog';
+    default: return 'default';
+  }
+};
 
 // Mock data for demo
 const mockNewsData: TArticle[] = [
@@ -110,7 +120,7 @@ export const FeaturedNewsGrid: React.FC = () => {
               />
               <CardContent className="px-6 py-4">
                 <div className="flex items-center gap-3 mb-4">
-                  <Badge variant={featuredArticle.category.toLowerCase() as any}>
+                  <Badge variant={getCategoryVariant(featuredArticle.category)}>
                     {featuredArticle.category === 'NEWS' ? 'Мэдээ' : 'Блог'}
                   </Badge>
                   <span className="flex items-center gap-1 text-sm text-gray-500">
@@ -140,15 +150,17 @@ export const FeaturedNewsGrid: React.FC = () => {
               <Card key={article.id} className="overflow-hidden">
                 <div className="flex gap-6 p-4">
                   <div className="w-24 h-24 flex-shrink-0">
-                    <img
+                    <Image
                       src={article.imageUrl || '/api/placeholder/96/96'}
                       alt={article.title}
+                      width={96}
+                      height={96}
                       className="w-full h-full object-cover rounded-lg"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-2">
-                      <Badge variant={article.category.toLowerCase() as any} className="text-xs">
+                      <Badge variant={getCategoryVariant(article.category)} className="text-xs">
                         {article.category === 'NEWS' ? 'Мэдээ' : 'Блог'}
                       </Badge>
                     </div>

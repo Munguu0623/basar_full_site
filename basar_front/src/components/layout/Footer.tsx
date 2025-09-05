@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Facebook, Twitter, Instagram, Mail } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -24,7 +25,7 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="font-semibold text-gray-900 mb-4">Холбоосууд</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="/news" className="text-gray-600 hover:text-gray-900">Мэдээ</a></li>
+              <li><Link href="/news" className="text-gray-600 hover:text-gray-900">Мэдээ</Link></li>
               <li><a href="/blog" className="text-gray-600 hover:text-gray-900">Блог</a></li>
               <li><a href="/organizations" className="text-gray-600 hover:text-gray-900">Байгууллагууд</a></li>
             </ul>
