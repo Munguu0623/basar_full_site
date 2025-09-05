@@ -1,16 +1,22 @@
 // API клиент функцүүд
 import { TArticle, TOrganization, TCommunityStats } from '@/types';
+import { TNewsListResponse, TNewsListParams, TNewsDetail } from '@/types/news';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
 
-// Generic fetch wrapper
-async function apiClient<T>(endpoint: string): Promise<T> {
+// Generic fetch wrapper with optional init parameters
+export async function api<T>(
+  endpoint: string,
+  init?: RequestInit
+): Promise<T> {
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
+        ...init?.headers,
       },
+      ...init,
     });
 
     if (!response.ok) {
@@ -22,6 +28,11 @@ async function apiClient<T>(endpoint: string): Promise<T> {
     console.error(`API Error for ${endpoint}:`, error);
     throw error;
   }
+}
+
+// Legacy wrapper for compatibility
+async function apiClient<T>(endpoint: string): Promise<T> {
+  return api<T>(endpoint);
 }
 
 // Featured мэдээ авах
@@ -42,4 +53,29 @@ export async function getVerifiedOrganizations(): Promise<TOrganization[]> {
 // Community статистик авах
 export async function getCommunityStats(): Promise<TCommunityStats> {
   return apiClient<TCommunityStats>('/stats');
+}
+
+// Мэдээний жагсаалт авах (NEWS-1)
+export async function getNewsList(params: TNewsListParams = {}): Promise<TNewsListResponse> {
+  const { page = 1, pageSize = 10, category, tag } = params;
+  
+  const searchParams = new URLSearchParams({
+    page: page.toString(),
+    pageSize: pageSize.toString(),
+  });
+  
+  if (category) {
+    searchParams.append('category', category);
+  }
+  
+  if (tag) {
+    searchParams.append('tag', tag);
+  }
+  
+  return api<TNewsListResponse>(`/news?${searchParams.toString()}`);
+}
+
+// Мэдээний дэлгэрэнгүй авах
+export async function getNewsDetail(id: string): Promise<TNewsDetail> {
+  return api<TNewsDetail>(`/news/${id}`);
 }

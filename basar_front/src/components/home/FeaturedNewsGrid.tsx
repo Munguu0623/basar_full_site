@@ -104,11 +104,11 @@ export const FeaturedNewsGrid: React.FC = () => {
           <div className="lg:col-span-2">
             <Card className="overflow-hidden h-full">
               <CardImage 
-                src={featuredArticle.imageUrl || '/api/placeholder/600/400'} 
+                src={featuredArticle.imageUrl || '/api/placeholder/500/400'} 
                 alt={featuredArticle.title}
                 className="aspect-video"
               />
-              <CardContent className="p-6">
+              <CardContent className="px-6 py-4">
                 <div className="flex items-center gap-3 mb-4">
                   <Badge variant={featuredArticle.category.toLowerCase() as any}>
                     {featuredArticle.category === 'NEWS' ? 'Мэдээ' : 'Блог'}
@@ -135,10 +135,10 @@ export const FeaturedNewsGrid: React.FC = () => {
           </div>
 
           {/* Other Articles */}
-          <div className="space-y-6">
+          <div className="space-y-10">
             {otherArticles.map((article) => (
               <Card key={article.id} className="overflow-hidden">
-                <div className="flex gap-4 p-4">
+                <div className="flex gap-6 p-4">
                   <div className="w-24 h-24 flex-shrink-0">
                     <img
                       src={article.imageUrl || '/api/placeholder/96/96'}
