@@ -94,6 +94,44 @@ const mockNewsDetails: Record<string, TNewsDetail> = {
     commentCount: 12,
     viewCount: 890,
   },
+  
+  // Нэмэлт мэдээнүүдийн мэдээлэл (ID 3-50)
+  ...Object.fromEntries(Array.from({ length: 48 }, (_, i) => {
+    const id = (i + 3).toString();
+    return [id, {
+      id,
+      slug: `news-${id}`,
+      title: `Мэдээ ${id}: Амьтны арчилгааны зөвлөмж`,
+      content: `
+        <h2>Мэдээ ${id} - Амьтны арчилгааны зөвлөмж</h2>
+        
+        <p>Энэ бол ${id} дугаар мэдээний дэлгэрэнгүй агуулга юм. Амьтны эрүүл мэнд, сургалт зэргийн талаар олон хэрэгтэй мэдээлэл.</p>
+        
+        <h3>Гол сэдвүүд:</h3>
+        <ul>
+          <li>Амьтны эрүүл мэндийн арчилгаа</li>
+          <li>Хоол тэжээлийн зөвлөгөө</li>
+          <li>Сургалт, дрессур</li>
+          <li>Нийгэмшүүлэх арга барил</li>
+        </ul>
+        
+        <p>Илүү дэлгэрэнгүй мэдээлэл авахыг хүсвэл бидэнтэй холбогдоорой.</p>
+      `,
+      excerpt: `Энэ бол ${id} дугаар мэдээний товч тайлбар юм. Амьтны эрүүл мэнд, сургалт зэргийн талаар.`,
+      imageUrl: i % 3 === 0 ? '/hero_image.png' : null,
+      category: (['HEALTH', 'TRAINING', 'ADOPTION', 'OTHER'] as const)[i % 4],
+      publishedAt: new Date(Date.now() - (i + 3) * 24 * 60 * 60 * 1000).toISOString(),
+      tags: ['арчилгаа', 'зөвлөгөө'],
+      author: {
+        id: 'author1',
+        name: 'Мэргэжилтэн',
+        bio: 'Амьтны арчилгааны мэргэжилтэн'
+      },
+      likeCount: Math.floor(Math.random() * 200),
+      commentCount: Math.floor(Math.random() * 50),
+      viewCount: Math.floor(Math.random() * 1000),
+    }];
+  }))
 };
 
 export async function GET(
