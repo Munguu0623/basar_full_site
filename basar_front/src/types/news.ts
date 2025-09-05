@@ -24,20 +24,21 @@ export type TNewsListParams = {
 // Мэдээний дэлгэрэнгүй
 export type TNewsDetail = {
   id: string;
+  slug: string;
   title: string;
   content: string; // HTML content
-  excerpt: string;
+  excerpt?: string;
   imageUrl?: string | null;
   category: 'HEALTH' | 'TRAINING' | 'ADOPTION' | 'OTHER';
   publishedAt: string; // ISO
   updatedAt?: string; // ISO
   tags?: string[];
   author?: {
-    id: string;
+    id?: string;
     name: string;
-    avatar?: string;
+    avatarUrl?: string | null;
     bio?: string;
-  };
+  } | null;
   likeCount?: number;
   commentCount?: number;
   viewCount?: number;

@@ -9,7 +9,7 @@ interface BadgeProps {
   title?: string;
 }
 
-export const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', className, title }) => {
+const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', className, title }) => {
   const variants = {
     title: 'bg-orange-100 text-orange-800',
     news: 'bg-orange-100 text-orange-800',
@@ -32,3 +32,6 @@ export const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', cla
     </span>
   );
 };
+
+export { Badge };
+export default Badge;

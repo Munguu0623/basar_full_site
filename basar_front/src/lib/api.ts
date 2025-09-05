@@ -2,7 +2,11 @@
 import { TArticle, TOrganization, TCommunityStats } from '@/types';
 import { TNewsListResponse, TNewsListParams, TNewsDetail } from '@/types/news';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || (
+  typeof window === 'undefined' 
+    ? `http://localhost:${process.env.PORT || 3000}/api`
+    : '/api'
+);
 
 // Generic fetch wrapper with optional init parameters
 export async function api<T>(
@@ -75,7 +79,7 @@ export async function getNewsList(params: TNewsListParams = {}): Promise<TNewsLi
   return api<TNewsListResponse>(`/news?${searchParams.toString()}`);
 }
 
-// Мэдээний дэлгэрэнгүй авах
-export async function getNewsDetail(id: string): Promise<TNewsDetail> {
-  return api<TNewsDetail>(`/news/${id}`);
+// Мэдээний дэлгэрэнгүй авах (slug)
+export async function getNewsDetail(slug: string): Promise<TNewsDetail> {
+  return api<TNewsDetail>(`/news/${slug}`);
 }

@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { TNewsDetail, TNewsListItem } from '@/types/news';
+import { TNewsDetail } from '@/types/news';
 
 // Mock мэдээний дэлгэрэнгүй өгөгдөл
 const mockNewsDetails: Record<string, TNewsDetail> = {
   '1': {
     id: '1',
+    slug: 'winter-pet-care',
     title: 'Өвлийн улиралд амьтныг хэрхэн арчлах вэ?',
     content: `
       <h2>Өвлийн арчилгааны үндсэн зарчмууд</h2>
@@ -36,7 +37,7 @@ const mockNewsDetails: Record<string, TNewsDetail> = {
     author: {
       id: 'auth1',
       name: 'Д.Энхбаяр',
-      avatar: '/hero_image.png',
+      avatarUrl: '/hero_image.png',
       bio: 'Амьтны эмч, 10 жилийн туршлагатай',
     },
     likeCount: 245,
@@ -62,6 +63,7 @@ const mockNewsDetails: Record<string, TNewsDetail> = {
   
   '2': {
     id: '2',
+    slug: 'dog-training-classes',
     title: 'Нохойны дрессуры хичээлийн эхлэл',
     content: `
       <h2>Дрессурын хичээлд бүртгүүлээрэй</h2>
@@ -96,11 +98,19 @@ const mockNewsDetails: Record<string, TNewsDetail> = {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { slug: string } }
 ) {
-  const { id } = params;
+  const { slug } = params;
   
-  const newsDetail = mockNewsDetails[id];
+  // ID эсвэл slug-аар хайх
+  let newsDetail = mockNewsDetails[slug];
+  
+  // Хэрэв ID-аар олдохгүй бол slug-аар хайх
+  if (!newsDetail) {
+    newsDetail = Object.values(mockNewsDetails).find(
+      article => article.slug === slug
+    );
+  }
   
   if (!newsDetail) {
     return NextResponse.json(

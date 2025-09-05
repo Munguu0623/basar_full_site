@@ -15,18 +15,19 @@ export const metadata: Metadata = {
 };
 
 interface NewsPageProps {
-  searchParams: {
+  searchParams: Promise<{
     page?: string;
     category?: string;
     tag?: string;
-  };
+  }>;
 }
 
 async function NewsPageContent({ searchParams }: NewsPageProps) {
   try {
-    const page = parseInt(searchParams.page || '1');
-    const category = searchParams.category as any;
-    const tag = searchParams.tag;
+    const params = await searchParams;
+    const page = parseInt(params.page || '1');
+    const category = params.category as 'HEALTH' | 'TRAINING' | 'ADOPTION' | 'OTHER' | undefined;
+    const tag = params.tag;
 
     const initialData = await getNewsList({
       page,
@@ -45,10 +46,11 @@ async function NewsPageContent({ searchParams }: NewsPageProps) {
   } catch (error) {
     console.error('Error fetching news:', error);
     // Fallback to client-side rendering
+    const params = await searchParams;
     return (
       <ArticleList
-        categoryFilter={searchParams.category as any}
-        tagFilter={searchParams.tag}
+        categoryFilter={params.category as 'HEALTH' | 'TRAINING' | 'ADOPTION' | 'OTHER' | undefined}
+        tagFilter={params.tag}
       />
     );
   }
