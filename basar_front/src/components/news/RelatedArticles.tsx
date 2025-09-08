@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { TNewsListItem } from '@/types/news';
 import { api } from '@/lib/api';
 import { ClockIcon } from '@heroicons/react/24/outline';
-import Badge from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/Badge';
 
 type RelatedArticlesProps = {
   currentArticleId: string;

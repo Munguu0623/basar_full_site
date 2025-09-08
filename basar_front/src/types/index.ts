@@ -30,6 +30,9 @@ export type TOrganization = {
   coverImage?: string;
   services?: string[];
   hours?: string;
+  type?: 'VETERINARY' | 'SHELTER' | 'RESCUE' | 'TRAINING' | 'OTHER';
+  city?: string;
+  slug?: string;
 };
 
 export type TCommunityStats = {
@@ -73,4 +76,75 @@ export type TBlogResponse = {
   createdAt: string;
   tags?: string[];
   excerpt?: string;
+};
+
+// USER-2 Profile types
+export type TProfile = {
+  id: string;
+  email: string;
+  displayName: string;
+  bio?: string | null;
+  avatarUrl?: string | null;
+  createdAt: string;
+};
+
+export type TProfilePatch = {
+  displayName?: string;
+  bio?: string;
+  avatarUrl?: string | null;
+};
+
+// USER-3 Contributions types
+export type TMyPost = {
+  id: string;
+  title: string;
+  createdAt: string;
+  likeCount?: number;
+  commentCount?: number;
+};
+
+export type TMyComment = {
+  id: string;
+  content: string;
+  postId: string;
+  postTitle: string;
+  createdAt: string;
+};
+
+export type TPaged<T> = {
+  items: T[];
+  totalCount: number;
+};
+
+// Classifieds модулийн типүүд (CLASSIFIEDS-1)
+export type TClassified = {
+  id: string;
+  category: 'LOST' | 'FOUND' | 'ADOPTION' | 'MARKETPLACE' | 'SERVICE';
+  animalType: 'DOG' | 'CAT' | 'OTHER';
+  breed?: string | null;
+  sex?: 'M' | 'F' | null;
+  age?: 'BABY' | 'YOUNG' | 'ADULT' | null;
+  size?: 'S' | 'M' | 'L' | null;
+  title: string;
+  description: string;
+  photos: string[]; // URLs
+  locationCity: string;
+  locationDistrict?: string | null;
+  price?: number | null; // Marketplace only
+  contactPhone: string;
+  contactEmail?: string | null;
+  status: 'ACTIVE' | 'CLOSED';
+  createdAt: string; // ISO
+};
+
+export type TClassifiedCreateRequest = Omit<TClassified, 'id' | 'createdAt' | 'status'>;
+
+export type TClassifiedFilters = {
+  category?: TClassified['category'];
+  animalType?: TClassified['animalType'];
+  city?: string;
+  q?: string;
+  sort?: 'newest' | 'oldest' | 'price_asc' | 'price_desc';
+  page?: number;
+  pageSize?: number;
 };

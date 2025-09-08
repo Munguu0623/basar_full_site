@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { TNewsDetail } from '@/types/news';
 import { sanitizeHTML } from '@/lib/sanitize';
 import { ClockIcon, UserIcon, TagIcon } from '@heroicons/react/24/outline';
-import Badge from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/Badge';
 import InteractionButtons from './InteractionButtons';
 import CommentForm from './CommentForm';
 import CommentSection from './CommentSection';

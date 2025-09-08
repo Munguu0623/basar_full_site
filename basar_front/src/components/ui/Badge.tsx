@@ -1,39 +1,45 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Check } from 'lucide-react';
 
 interface BadgeProps {
-  children: React.ReactNode;
-  variant?: 'news' | 'blog' | 'photo' | 'verified' | 'default' | 'outline';
+  variant?: 'default' | 'success' | 'warning' | 'danger' | 'info';
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
-  title?: string;
+  children: React.ReactNode;
 }
 
-const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', className, title }) => {
+export const Badge: React.FC<BadgeProps> = ({
+  variant = 'default',
+  size = 'md',
+  className,
+  children
+}) => {
+  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-full border';
+  
   const variants = {
-    title: 'bg-orange-100 text-orange-800',
-    news: 'bg-orange-100 text-orange-800',
-    blog: 'bg-blue-100 text-blue-800',
-    photo: 'bg-purple-100 text-purple-800',
-    verified: 'bg-green-100 text-green-800',
-    default: 'bg-gray-100 text-gray-800',
-    outline: 'border border-gray-300 text-gray-600 bg-white hover:bg-gray-50'
+    default: 'bg-slate-100 text-slate-700 border-slate-200',
+    success: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+    warning: 'bg-amber-100 text-amber-700 border-amber-200',
+    danger: 'bg-red-100 text-red-700 border-red-200',
+    info: 'bg-blue-100 text-blue-700 border-blue-200'
+  };
+
+  const sizes = {
+    sm: 'px-2 py-1 text-xs',
+    md: 'px-3 py-1 text-sm',
+    lg: 'px-4 py-2 text-base'
   };
 
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium',
+        baseStyles,
         variants[variant],
+        sizes[size],
         className
       )}
-      title={title}
     >
-      {variant === 'verified' && <Check size={12} />}
       {children}
     </span>
   );
 };
-
-export { Badge };
-export default Badge;

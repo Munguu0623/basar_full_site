@@ -128,3 +128,117 @@ export async function getBlogList(params: BlogListParams = {}): Promise<BlogList
   
   return api<BlogListResponse>(`/blog?${searchParams.toString()}`);
 }
+
+// ORG API Functions
+
+// Байгууллагын жагсаалт авах (ORG-1)
+interface OrganizationListParams {
+  page?: number;
+  pageSize?: number;
+  type?: string;
+  city?: string;
+  verified?: boolean;
+  search?: string;
+}
+
+interface OrganizationListResponse {
+  organizations: TOrganization[];
+  pagination: {
+    page: number;
+    pageSize: number;
+    total: number;
+    totalPages: number;
+  };
+  filters: {
+    type?: string;
+    city?: string;
+    verified?: boolean;
+    search?: string;
+  };
+}
+
+export async function getOrganizationList(params: OrganizationListParams = {}): Promise<OrganizationListResponse> {
+  const { page = 1, pageSize = 9, type, city, verified, search } = params;
+  
+  const searchParams = new URLSearchParams({
+    page: page.toString(),
+    pageSize: pageSize.toString(),
+  });
+  
+  if (type) {
+    searchParams.append('type', type);
+  }
+  
+  if (city) {
+    searchParams.append('city', city);
+  }
+  
+  if (verified !== undefined) {
+    searchParams.append('verified', verified.toString());
+  }
+  
+  if (search) {
+    searchParams.append('search', search);
+  }
+  
+  return api<OrganizationListResponse>(`/organizations?${searchParams.toString()}`);
+}
+
+// Байгууллагын дэлгэрэнгүй авах (ORG-2)
+interface OrganizationDetailResponse {
+  organization: TOrganization;
+  relatedOrganizations: TOrganization[];
+  meta: {
+    lastUpdated: string;
+    verified: boolean;
+  };
+}
+
+export async function getOrganizationDetail(slug: string): Promise<OrganizationDetailResponse> {
+  return api<OrganizationDetailResponse>(`/organizations/${slug}`);
+}
+
+// Байгууллага бүртгүүлэх хүсэлт илгээх (ORG-3)
+interface OrganizationApplyRequest {
+  name: string;
+  description?: string;
+  type: string;
+  city: string;
+  email: string;
+  phone?: string;
+  website?: string;
+  address?: string;
+  logo?: File | null;
+}
+
+interface OrganizationApplyResponse {
+  success: boolean;
+  message: string;
+  applicationId: string;
+  status: 'PENDING';
+  estimatedReviewTime: string;
+  contactEmail: string;
+}
+
+export async function applyOrganization(data: OrganizationApplyRequest): Promise<OrganizationApplyResponse> {
+  // Form data for file upload
+  const formData = new FormData();
+  
+  Object.entries(data).forEach(([key, value]) => {
+    if (value !== null && value !== undefined) {
+      if (key === 'logo' && value instanceof File) {
+        formData.append(key, value);
+      } else {
+        formData.append(key, value.toString());
+      }
+    }
+  });
+  
+  return api<OrganizationApplyResponse>('/organizations', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      // Remove Content-Type header to let browser set it for FormData
+    },
+  });
+}

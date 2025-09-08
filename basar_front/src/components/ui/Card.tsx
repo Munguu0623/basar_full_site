@@ -12,8 +12,8 @@ export const Card: React.FC<CardProps> = ({ children, className, hover = true })
   return (
     <div
       className={cn(
-        'bg-white rounded-2xl shadow-sm border border-gray-100',
-        hover && 'transition-transform duration-200 hover:-translate-y-1 hover:shadow-md',
+        'bg-white rounded-xl shadow-sm border border-slate-200/60 backdrop-blur-sm',
+        hover && 'transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/50',
         className
       )}
     >
@@ -30,7 +30,7 @@ interface CardImageProps {
 
 export const CardImage: React.FC<CardImageProps> = ({ src, alt, className }) => {
   return (
-    <div className={cn('relative w-full aspect-video overflow-hidden rounded-t-2xl', className)}>
+    <div className={cn('relative w-full aspect-video overflow-hidden rounded-t-xl', className)}>
       <Image
         src={src}
         alt={alt}
