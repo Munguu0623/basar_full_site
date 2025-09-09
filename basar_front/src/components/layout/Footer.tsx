@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-sm">
               <li><Link href="/news" className="text-gray-600 hover:text-gray-900">Мэдээ</Link></li>
               <li><Link href="/blog" className="text-gray-600 hover:text-gray-900">Блог</Link></li>
-              <li><a href="/organizations" className="text-gray-600 hover:text-gray-900">Байгууллагууд</a></li>
+              <li><Link href="/organizations" className="text-gray-600 hover:text-gray-900">Байгууллагууд</Link></li>
             </ul>
           </div>
 
@@ -35,10 +35,10 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="font-semibold text-gray-900 mb-4">Тусламж</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="/help" className="text-gray-600 hover:text-gray-900">Тусламж</a></li>
-              <li><a href="/contact" className="text-gray-600 hover:text-gray-900">Холбоо барих</a></li>
-              <li><a href="/privacy" className="text-gray-600 hover:text-gray-900">Нууцлалын бодлого</a></li>
-              <li><a href="/terms" className="text-gray-600 hover:text-gray-900">Үйлчилгээний нөхцөл</a></li>
+              <li><Link href="/help" className="text-gray-600 hover:text-gray-900">Тусламж</Link></li>
+              <li><Link href="/contact" className="text-gray-600 hover:text-gray-900">Холбоо барих</Link></li>
+              <li><Link href="/privacy" className="text-gray-600 hover:text-gray-900">Нууцлалын бодлого</Link></li>
+              <li><Link href="/terms" className="text-gray-600 hover:text-gray-900">Үйлчилгээний нөхцөл</Link></li>
             </ul>
           </div>
 
