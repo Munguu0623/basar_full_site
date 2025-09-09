@@ -66,9 +66,9 @@ export const Header: React.FC = () => {
             <Link href="/" className="px-4 py-2 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors">
               Нүүр
             </Link>
-            <a href="/animals" className="px-4 py-2 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors">
+            <Link href="/animals" className="px-4 py-2 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors">
               Амьтад
-            </a>
+            </Link>
             <Link href="/news" className="px-4 py-2 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors">
               Мэдээ
             </Link>
@@ -81,9 +81,6 @@ export const Header: React.FC = () => {
             <Link href="/classifieds" className="px-4 py-2 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors">
               🐾 Зар
             </Link>
-            <a href="/help" className="px-4 py-2 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors">
-              Анхны тусламж
-            </a>
           </nav>
 
           {/* Search & Auth */}
@@ -92,6 +89,17 @@ export const Header: React.FC = () => {
             <Button variant="ghost" size="md" className="lg:hidden p-2">
               <Search size={20} />
             </Button>
+            
+            {/* Анхны тусламж товч - desktop */}
+            <Link href="/first-aid" className="hidden lg:block">
+              <Button 
+                variant="secondary" 
+                size="md" 
+                className="px-4 border-red-200 text-red-700 hover:bg-red-50 hover:border-red-300 bg-red-50"
+              >
+                🩺 Анхны тусламж
+              </Button>
+            </Link>
             
             {/* Дэлгүүр товч - desktop */}
             <Link href="/shop" className="hidden lg:block">
@@ -140,13 +148,13 @@ export const Header: React.FC = () => {
                 >
                   🏠 Нүүр
                 </Link>
-                <a 
+                <Link 
                   href="/animals" 
                   className="px-4 py-3 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors"
                   onClick={closeMobileMenu}
                 >
                   🐾 Амьтад
-                </a>
+                </Link>
                 <Link 
                   href="/news" 
                   className="px-4 py-3 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors"
@@ -175,13 +183,13 @@ export const Header: React.FC = () => {
                 >
                   🐾 Зар
                 </Link>
-                <a 
-                  href="/help" 
-                  className="px-4 py-3 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors"
+                <Link 
+                  href="/first-aid" 
+                  className="px-4 py-3 text-red-700 hover:text-red-800 hover:bg-red-50 rounded-lg font-medium transition-colors"
                   onClick={closeMobileMenu}
                 >
                   🩺 Анхны тусламж
-                </a>
+                </Link>
                 
                 {/* Mobile Action Buttons */}
                 <div className="pt-4 border-t border-slate-200 mt-4 space-y-3">
