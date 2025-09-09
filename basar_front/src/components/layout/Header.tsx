@@ -1,12 +1,22 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search, Menu } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export const Header: React.FC = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <>
       {/* Weather Info Bar */}
@@ -78,21 +88,13 @@ export const Header: React.FC = () => {
 
           {/* Search & Auth */}
           <div className="flex items-center space-x-3">
-            {/* <div className="hidden lg:flex items-center bg-gray-50 rounded-full px-4 py-2 min-w-48 border border-gray-200">
-              <Search size={18} className="text-gray-400 mr-2" />
-              <input
-                type="text"
-                placeholder="Хайх..."
-                className="bg-transparent flex-1 outline-none text-sm"
-              />
-            </div> */}
-            
+            {/* Search button - mobile */}
             <Button variant="ghost" size="md" className="lg:hidden p-2">
               <Search size={20} />
             </Button>
             
-            {/* Дэлгүүр товч */}
-            <Link href="/shop">
+            {/* Дэлгүүр товч - desktop */}
+            <Link href="/shop" className="hidden lg:block">
               <Button 
                 variant="primary" 
                 size="md" 
@@ -102,8 +104,8 @@ export const Header: React.FC = () => {
               </Button>
             </Link>
             
-            {/* Нэвтрэх товч */}
-            <Link href="/login">
+            {/* Нэвтрэх товч - desktop */}
+            <Link href="/login" className="hidden lg:block">
               <Button 
                 variant="secondary" 
                 size="md"
@@ -113,12 +115,100 @@ export const Header: React.FC = () => {
               </Button>
             </Link>
             
-            <Button variant="ghost" size="md" className="lg:hidden p-2">
-              <Menu size={20} />
+            {/* Mobile Menu Button */}
+            <Button 
+              variant="ghost" 
+              size="md" 
+              className="lg:hidden p-2"
+              onClick={toggleMobileMenu}
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </Button>
           </div>
           </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden bg-white border-t border-slate-200 shadow-lg">
+            <div className="max-w-7xl mx-auto px-4 py-4">
+              <nav className="flex flex-col space-y-2">
+                <Link 
+                  href="/" 
+                  className="px-4 py-3 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  🏠 Нүүр
+                </Link>
+                <a 
+                  href="/animals" 
+                  className="px-4 py-3 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  🐾 Амьтад
+                </a>
+                <Link 
+                  href="/news" 
+                  className="px-4 py-3 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  📰 Мэдээ
+                </Link>
+                <Link 
+                  href="/blog" 
+                  className="px-4 py-3 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  ✍️ Блог
+                </Link>
+                <Link 
+                  href="/organizations" 
+                  className="px-4 py-3 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  🏢 Байгууллагууд
+                </Link>
+                <Link 
+                  href="/classifieds" 
+                  className="px-4 py-3 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  🐾 Зар
+                </Link>
+                <a 
+                  href="/help" 
+                  className="px-4 py-3 text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg font-medium transition-colors"
+                  onClick={closeMobileMenu}
+                >
+                  🩺 Анхны тусламж
+                </a>
+                
+                {/* Mobile Action Buttons */}
+                <div className="pt-4 border-t border-slate-200 mt-4 space-y-3">
+                  <Link href="/shop" className="block" onClick={closeMobileMenu}>
+                    <Button 
+                      variant="primary" 
+                      size="md" 
+                      className="w-full"
+                    >
+                      🛒 ДЭЛГҮҮР
+                    </Button>
+                  </Link>
+                  
+                  <Link href="/login" className="block" onClick={closeMobileMenu}>
+                    <Button 
+                      variant="secondary" 
+                      size="md"
+                      className="w-full"
+                    >
+                      👤 НЭВТРЭХ
+                    </Button>
+                  </Link>
+                </div>
+              </nav>
+            </div>
+          </div>
+        )}
       </header>
     </>
   );
