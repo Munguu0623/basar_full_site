@@ -187,7 +187,7 @@ export const TrendingBlogsCarousel: React.FC = () => {
                     />
                     <CardContent className="p-6">
                       <div className="flex items-center gap-3 mb-4">
-                        <Badge variant="blog">Блог</Badge>
+                        <Badge variant="success">Блог</Badge>
                         <span className="flex items-center gap-1 text-sm text-gray-500">
                           <Calendar size={14} />
                           {formatDate(blog.publishedAt)}

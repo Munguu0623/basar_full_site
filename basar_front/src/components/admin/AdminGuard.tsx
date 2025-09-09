@@ -31,7 +31,7 @@ export const AdminGuard: React.FC<AdminGuardProps> = ({ children }) => {
         return;
         
         /* Бодит API ашиглах код:
-        const response = await api.get<User>('/api/me');
+        const response = await api.get<User>('/me');
         
         if (response.role === 'ROLE_ADMIN') {
           setIsAuthorized(true);

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { Suspense } from 'react';
 import OrganizationList from '@/components/org/OrganizationList';
 
 // SEO metadata
@@ -119,7 +120,9 @@ export default async function OrganizationsPage() {
         </div>
 
         {/* Organizations List */}
-        <OrganizationList initialData={initialData} />
+        <Suspense fallback={<div className="p-8 text-center">Байгууллагуудыг ачаалж байна...</div>}>
+          <OrganizationList initialData={initialData} />
+        </Suspense>
       </div>
 
       {/* Bottom CTA Section */}

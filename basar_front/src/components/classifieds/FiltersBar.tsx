@@ -188,43 +188,47 @@ export default function FiltersBar({
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-sm text-gray-600 font-medium">Идэвхтэй шүүлтүүр:</span>
             {category && (
-              <Badge 
-                variant="info" 
-                className="cursor-pointer hover:bg-red-100 hover:text-red-700"
+              <button
                 onClick={() => handleCategoryChange(null)}
+                className="cursor-pointer hover:bg-red-100 hover:text-red-700"
               >
-                {categoryLabels[category]} ✕
-              </Badge>
+                <Badge variant="info">
+                  {categoryLabels[category]} ✕
+                </Badge>
+              </button>
             )}
             {animalType && (
-              <Badge 
-                variant="success"
-                className="cursor-pointer hover:bg-red-100 hover:text-red-700"
+              <button
                 onClick={() => handleAnimalTypeChange(null)}
+                className="cursor-pointer hover:bg-red-100 hover:text-red-700"
               >
-                {animalTypeLabels[animalType]} ✕
-              </Badge>
+                <Badge variant="success">
+                  {animalTypeLabels[animalType]} ✕
+                </Badge>
+              </button>
             )}
             {city && (
-              <Badge 
-                variant="warning"
-                className="cursor-pointer hover:bg-red-100 hover:text-red-700"
+              <button
                 onClick={() => handleCityChange('')}
+                className="cursor-pointer hover:bg-red-100 hover:text-red-700"
               >
-                📍 {city} ✕
-              </Badge>
+                <Badge variant="warning">
+                  📍 {city} ✕
+                </Badge>
+              </button>
             )}
             {searchQuery && (
-              <Badge 
-                variant="default"
-                className="cursor-pointer hover:bg-red-100 hover:text-red-700"
+              <button
                 onClick={() => {
                   setSearchInput('');
                   onChange({ q: undefined });
                 }}
+                className="cursor-pointer hover:bg-red-100 hover:text-red-700"
               >
-                🔍 "{searchQuery}" ✕
-              </Badge>
+                <Badge variant="default">
+                  🔍 &ldquo;{searchQuery}&rdquo; ✕
+                </Badge>
+              </button>
             )}
           </div>
         </div>

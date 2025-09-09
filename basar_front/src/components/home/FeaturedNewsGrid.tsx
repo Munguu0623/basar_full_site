@@ -11,10 +11,10 @@ import { formatDate } from '@/lib/utils';
 import { Calendar, ArrowRight, Newspaper } from 'lucide-react';
 
 // Category-г Badge variant-руу map хийх функц
-const getCategoryVariant = (category: string): 'news' | 'blog' | 'default' => {
+const getCategoryVariant = (category: string): 'info' | 'success' | 'default' => {
   switch (category) {
-    case 'NEWS': return 'news';
-    case 'BLOG': return 'blog';
+    case 'NEWS': return 'info';
+    case 'BLOG': return 'success';
     default: return 'default';
   }
 };

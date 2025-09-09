@@ -10,8 +10,8 @@ interface SortBarProps {
 }
 
 const sortOptions = [
-  { value: 'newest', label: '🕐 Шинээс хуучин', icon: Clock },
-  { value: 'oldest', label: '⏰ Хуучнаас шинэ', icon: Clock },
+  { value: 'newest', label: '🕐 Шинээс хуучин', icon: Clock, priceOnly: false },
+  { value: 'oldest', label: '⏰ Хуучнаас шинэ', icon: Clock, priceOnly: false },
   { value: 'price_asc', label: '💰 Үнэ: бага → их', icon: DollarSign, priceOnly: true },
   { value: 'price_desc', label: '💎 Үнэ: их → бага', icon: DollarSign, priceOnly: true },
 ] as const;

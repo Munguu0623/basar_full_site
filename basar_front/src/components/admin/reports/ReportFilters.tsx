@@ -44,7 +44,7 @@ export const ReportFilters: React.FC<ReportFiltersProps> = ({
     });
   };
 
-  const updateFilter = (key: keyof Filters, value: any) => {
+  const updateFilter = (key: keyof Filters, value: string | {from?: string, to?: string} | undefined) => {
     onFiltersChange({
       ...filters,
       [key]: value
@@ -178,7 +178,7 @@ export const ReportFilters: React.FC<ReportFiltersProps> = ({
             )}
             {filters.q && (
               <span className="inline-flex items-center gap-1 px-2 py-1 bg-amber-100 text-amber-700 text-xs rounded-full">
-                Хайлт: "{filters.q}"
+                Хайлт: &ldquo;{filters.q}&rdquo;
                 <button
                   onClick={() => updateFilter('q', '')}
                   className="ml-1 hover:text-amber-900"

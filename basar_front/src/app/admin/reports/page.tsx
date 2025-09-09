@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Flag, 
-  Search, 
   Eye, 
   EyeOff, 
   Trash2, 
@@ -85,7 +84,7 @@ export default function ReportsPage() {
         ...(filters.q && { q: filters.q }),
       });
 
-      const response = await api.get(`/api/admin/reports?${params}`);
+      const response = await api.get<{data: Report[], total: number}>(`/admin/reports?${params}`);
       setReports(response.data || []);
       setTotal(response.total || 0);
     } catch (error) {
@@ -104,7 +103,7 @@ export default function ReportsPage() {
   // Action хийх
   const handleAction = async (reportId: string, action: 'hide' | 'delete' | 'dismiss', reason?: string) => {
     try {
-      await api.post(`/api/admin/reports/${reportId}/action`, {
+      await api.post(`/admin/reports/${reportId}/action`, {
         action,
         reason
       });
@@ -145,7 +144,7 @@ export default function ReportsPage() {
     try {
       await Promise.all(
         selectedRows.map(id => 
-          api.post(`/api/admin/reports/${id}/action`, { action })
+          api.post(`/admin/reports/${id}/action`, { action })
         )
       );
       
@@ -190,15 +189,15 @@ export default function ReportsPage() {
       key: 'entityType',
       header: 'Төрөл',
       sortable: true,
-      render: (value: string) => (
+      render: (value: unknown) => (
         <div className="flex items-center gap-2">
-          {value === 'post' ? (
+          {(value as string) === 'post' ? (
             <FileText size={16} className="text-blue-500" />
           ) : (
             <MessageCircle size={16} className="text-emerald-500" />
           )}
           <span className="capitalize">
-            {value === 'post' ? 'Нийтлэл' : 'Сэтгэгдэл'}
+            {(value as string) === 'post' ? 'Нийтлэл' : 'Сэтгэгдэл'}
           </span>
         </div>
       )
@@ -206,10 +205,10 @@ export default function ReportsPage() {
     {
       key: 'entityId',
       header: 'Контент',
-      render: (value: string, row: Report) => (
+      render: (value: unknown, row: Report) => (
         <div>
           <div className="font-medium text-slate-900 line-clamp-1">
-            {row.reportedContent.title || `${row.entityType} #${value.slice(-6)}`}
+            {row.reportedContent.title || `${row.entityType} #${(value as string).slice(-6)}`}
           </div>
           <div className="text-sm text-slate-600 line-clamp-1">
             {row.reportedContent.excerpt}
@@ -224,21 +223,21 @@ export default function ReportsPage() {
       key: 'reason',
       header: 'Шалтгаан',
       sortable: true,
-      render: (value: string) => (
+      render: (value: unknown) => (
         <Badge variant="warning" size="sm">
-          {value}
+          {value as string}
         </Badge>
       )
     },
     {
       key: 'reporter',
       header: 'Гомдол гаргагч',
-      render: (value: any) => (
+      render: (value: unknown) => (
         <div className="flex items-center gap-2">
           <User size={14} className="text-slate-400" />
           <div>
-            <div className="font-medium text-slate-900">{value.name}</div>
-            <div className="text-xs text-slate-500">{value.email}</div>
+            <div className="font-medium text-slate-900">{(value as {name: string, email: string}).name}</div>
+            <div className="text-xs text-slate-500">{(value as {name: string, email: string}).email}</div>
           </div>
         </div>
       )
@@ -247,10 +246,10 @@ export default function ReportsPage() {
       key: 'createdAt',
       header: 'Огноо',
       sortable: true,
-      render: (value: string) => (
+      render: (value: unknown) => (
         <div className="flex items-center gap-1 text-sm text-slate-600">
           <Calendar size={14} />
-          {new Date(value).toLocaleDateString('mn-MN')}
+          {new Date(value as string).toLocaleDateString('mn-MN')}
         </div>
       )
     },
@@ -258,8 +257,8 @@ export default function ReportsPage() {
       key: 'status',
       header: 'Төлөв',
       sortable: true,
-      render: (value: string, row: Report) => {
-        switch (value) {
+      render: (value: unknown, row: Report) => {
+        switch (value as string) {
           case 'resolved':
             return (
               <div>
@@ -454,7 +453,7 @@ export default function ReportsPage() {
           setActionDialogOpen(false);
           setTargetReport(null);
         }}
-        onConfirm={(reason) => targetReport && handleAction(targetReport, actionType, reason)}
+        onConfirm={() => targetReport && handleAction(targetReport, actionType)}
         title={getActionTitle(actionType)}
         description={getActionDescription(actionType)}
         variant={actionType === 'delete' ? 'danger' : 'warning'}

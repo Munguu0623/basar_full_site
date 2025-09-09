@@ -9,7 +9,7 @@ export default function CreateClassifiedPage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (data: TClassifiedCreateRequest) => {
+  const handleSubmit = async (_data: TClassifiedCreateRequest) => {
     setIsSubmitting(true);
     
     try {

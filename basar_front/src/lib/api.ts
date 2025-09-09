@@ -34,6 +34,43 @@ export async function api<T>(
   }
 }
 
+// HTTP Methods for convenient usage
+api.get = async <T>(endpoint: string, init?: Omit<RequestInit, 'method'>): Promise<T> => {
+  return api<T>(endpoint, { ...init, method: 'GET' });
+};
+
+api.post = async <T>(endpoint: string, data?: unknown, init?: Omit<RequestInit, 'method' | 'body'>): Promise<T> => {
+  return api<T>(endpoint, {
+    ...init,
+    method: 'POST',
+    body: data ? JSON.stringify(data) : undefined,
+  });
+};
+
+api.put = async <T>(endpoint: string, data?: unknown, init?: Omit<RequestInit, 'method' | 'body'>): Promise<T> => {
+  return api<T>(endpoint, {
+    ...init,
+    method: 'PUT',
+    body: data ? JSON.stringify(data) : undefined,
+  });
+};
+
+api.patch = async <T>(endpoint: string, data?: unknown, init?: Omit<RequestInit, 'method' | 'body'>): Promise<T> => {
+  return api<T>(endpoint, {
+    ...init,
+    method: 'PATCH',
+    body: data ? JSON.stringify(data) : undefined,
+  });
+};
+
+api.delete = async <T>(endpoint: string, data?: unknown, init?: Omit<RequestInit, 'method' | 'body'>): Promise<T> => {
+  return api<T>(endpoint, {
+    ...init,
+    method: 'DELETE',
+    body: data ? JSON.stringify(data) : undefined,
+  });
+};
+
 // Legacy wrapper for compatibility
 async function apiClient<T>(endpoint: string): Promise<T> {
   return api<T>(endpoint);

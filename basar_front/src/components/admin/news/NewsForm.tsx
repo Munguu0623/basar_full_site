@@ -143,19 +143,22 @@ export const NewsForm: React.FC<NewsFormProps> = ({ mode, initialData }) => {
       const submitData = { ...formData, status };
       
       if (mode === 'create') {
-        await api.post('/api/admin/news', submitData);
+        await api.post('/admin/news', submitData);
       } else {
-        await api.patch(`/api/admin/news/${formData.id}`, submitData);
+        await api.patch(`/admin/news/${formData.id}`, submitData);
       }
 
       setHasUnsavedChanges(false);
       router.push('/admin/news');
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Мэдээ хадгалахад алдаа гарлаа:', error);
       
       // Server error-уудыг харуулах
-      if (error.response?.data?.errors) {
-        setErrors(error.response.data.errors);
+      if (error && typeof error === 'object' && 'response' in error) {
+        const apiError = error as { response?: { data?: { errors?: Record<string, string> } } };
+        if (apiError.response?.data?.errors) {
+          setErrors(apiError.response.data.errors);
+        }
       }
     } finally {
       setSaving(false);

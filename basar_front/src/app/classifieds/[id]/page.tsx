@@ -142,9 +142,7 @@ export default function ClassifiedDetailPage() {
         <div className="container mx-auto px-4 py-8">
           <ErrorState
             title={error || 'Зар олдсонгүй'}
-            description="Уучлаарай, таны хайсан зар олдсонгүй эсвэл устгагдсан байж магадгүй."
-            actionText="Бүх зар үзэх"
-            actionHref="/classifieds"
+            message="Уучлаарай, таны хайсан зар олдсонгүй эсвэл устгагдсан байж магадгүй."
           />
         </div>
       </div>

@@ -30,7 +30,7 @@ export default function EditNewsPage() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await api.get(`/api/admin/news/${newsId}`);
+        const response = await api.get<NewsData>(`/admin/news/${newsId}`);
         setNewsData(response);
       } catch (err) {
         console.error('Мэдээ ачаалахад алдаа гарлаа:', err);
@@ -115,7 +115,7 @@ export default function EditNewsPage() {
             Мэдээ засах
           </h1>
           <p className="text-slate-600 mt-1">
-            "{newsData.title}" мэдээг засварлах
+            &ldquo;{newsData.title}&rdquo; мэдээг засварлах
           </p>
         </div>
       </div>

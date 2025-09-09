@@ -4,9 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   Plus, 
-  Search, 
-  Filter, 
-  MoreHorizontal,
   Edit,
   Trash2,
   Eye,
@@ -66,7 +63,7 @@ export default function AdminNewsPage() {
         ...(filters.q && { q: filters.q }),
       });
 
-      const response = await api.get(`/api/admin/news?${params}`);
+      const response = await api.get<{data: NewsItem[], total: number}>(`/admin/news?${params}`);
       setNews(response.data || []);
       setTotal(response.total || 0);
     } catch (error) {
@@ -85,7 +82,7 @@ export default function AdminNewsPage() {
   // Мэдээ устгах
   const handleDelete = async (id: string) => {
     try {
-      await api.delete(`/api/admin/news/${id}`);
+      await api.delete(`/admin/news/${id}`);
       await fetchNews();
       setDeleteDialogOpen(false);
       setDeleteTarget(null);
@@ -99,20 +96,20 @@ export default function AdminNewsPage() {
     try {
       switch (action) {
         case 'publish':
-          await api.patch('/api/admin/news/bulk', {
+          await api.patch('/admin/news/bulk', {
             ids: selectedIds,
             action: 'publish'
           });
           break;
         case 'unpublish':
-          await api.patch('/api/admin/news/bulk', {
+          await api.patch('/admin/news/bulk', {
             ids: selectedIds,
             action: 'unpublish'
           });
           break;
         case 'delete':
           if (confirm(`${selectedIds.length} мэдээг устгахдаа итгэлтэй байна уу?`)) {
-            await api.delete('/api/admin/news/bulk', {
+            await api.delete('/admin/news/bulk', {
               data: { ids: selectedIds }
             });
           }
@@ -132,10 +129,10 @@ export default function AdminNewsPage() {
       header: 'Гарчиг',
       sortable: true,
       width: 'min-w-64',
-      render: (value: string, row: NewsItem) => (
+      render: (value: unknown, row: NewsItem) => (
         <div>
           <div className="font-medium text-slate-900 line-clamp-2">
-            {value}
+            {value as string}
           </div>
           <div className="text-sm text-slate-500">
             /{row.slug}
@@ -147,9 +144,9 @@ export default function AdminNewsPage() {
       key: 'category',
       header: 'Ангилал',
       sortable: true,
-      render: (value: string) => (
+      render: (value: unknown) => (
         <Badge variant="info" size="sm">
-          {value}
+          {value as string}
         </Badge>
       )
     },
@@ -157,12 +154,12 @@ export default function AdminNewsPage() {
       key: 'status',
       header: 'Төлөв',
       sortable: true,
-      render: (value: string) => (
+      render: (value: unknown) => (
         <Badge 
-          variant={value === 'published' ? 'success' : 'default'}
+          variant={(value as string) === 'published' ? 'success' : 'default'}
           size="sm"
         >
-          {value === 'published' ? 'Нийтлэгдсэн' : 'Ноорог'}
+          {(value as string) === 'published' ? 'Нийтлэгдсэн' : 'Ноорог'}
         </Badge>
       )
     },
@@ -170,12 +167,12 @@ export default function AdminNewsPage() {
       key: 'publishedAt',
       header: 'Нийтлэгдсэн',
       sortable: true,
-      render: (value: string, row: NewsItem) => (
+      render: (value: unknown) => (
         <div className="text-sm">
           {value ? (
             <div className="flex items-center gap-1 text-slate-700">
               <Calendar size={14} />
-              {new Date(value).toLocaleDateString('mn-MN')}
+              {new Date(value as string).toLocaleDateString('mn-MN')}
             </div>
           ) : (
             <span className="text-slate-500">-</span>
@@ -187,10 +184,10 @@ export default function AdminNewsPage() {
       key: 'viewCount',
       header: 'Үзэлт',
       sortable: true,
-      render: (value: number) => (
+      render: (value: unknown) => (
         <div className="flex items-center gap-1 text-slate-700">
           <Eye size={14} />
-          {value.toLocaleString()}
+          {(value as number).toLocaleString()}
         </div>
       )
     },

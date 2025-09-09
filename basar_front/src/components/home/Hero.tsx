@@ -15,7 +15,7 @@ export const Hero: React.FC = () => {
           <div className="space-y-8">
             {/* Trust Pills */}
             <div className="flex flex-wrap gap-3">
-              <Badge variant="verified" className="flex items-center gap-1">
+              <Badge variant="success" className="flex items-center gap-1">
                 <CheckCircle size={14} />
                 Verified 
               </Badge>

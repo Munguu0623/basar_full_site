@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { MapPin, Calendar, Eye, Flag } from 'lucide-react';
+import { MapPin, Calendar, Eye } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
-import ReportButton from './ReportButton';
+import ReportButton from '@/components/classifieds/ReportButton';
 import { TClassified } from '@/types';
 
 interface DetailInfoProps {

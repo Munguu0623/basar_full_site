@@ -3,19 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Building2, 
-  Search, 
-  Filter, 
   Check, 
   X, 
   MapPin,
   Mail,
   Phone,
-  Clock,
-  Eye
+  Clock
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
-import { ConfirmDialog } from '@/components/admin/ConfirmDialog';
 import { OrgRequestFilters } from '@/components/admin/org/OrgRequestFilters';
 import { DecisionDialog } from '@/components/admin/org/DecisionDialog';
 import { AdminEmpty } from '@/components/empty/AdminEmpty';
@@ -77,7 +73,7 @@ export default function OrganizationRequestsPage() {
         ...(filters.q && { q: filters.q }),
       });
 
-      const response = await api.get(`/api/admin/org-requests?${params}`);
+      const response = await api.get<{data: OrgRequest[], total: number}>(`/admin/org-requests?${params}`);
       setRequests(response.data || []);
       setTotal(response.total || 0);
     } catch (error) {
@@ -96,7 +92,7 @@ export default function OrganizationRequestsPage() {
   // Approve/Reject хийх
   const handleDecision = async (requestId: string, action: 'approve' | 'reject', reason?: string) => {
     try {
-      await api.post(`/api/admin/org-requests/${requestId}/${action}`, {
+      await api.post(`/admin/org-requests/${requestId}/${action}`, {
         ...(reason && { reason })
       });
       
@@ -129,7 +125,7 @@ export default function OrganizationRequestsPage() {
     try {
       await Promise.all(
         selectedRequests.map(id => 
-          api.post(`/api/admin/org-requests/${id}/${action}`)
+          api.post(`/admin/org-requests/${id}/${action}`)
         )
       );
       

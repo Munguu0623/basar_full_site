@@ -44,9 +44,9 @@ const mockOrganizations: TOrganization[] = [
 ];
 
 interface RouteParams {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // GET /api/organizations/[slug] - Байгууллагын дэлгэрэнгүй мэдээлэл авах
@@ -55,7 +55,7 @@ export async function GET(
   { params }: RouteParams
 ) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
 
     // Find organization by ID (slug = id in this case)
     const organization = mockOrganizations.find(org => org.id === slug);
@@ -121,7 +121,7 @@ export async function PUT(
     //   return NextResponse.json({ error: 'UNAUTHORIZED' }, { status: 401 });
     // }
 
-    const { slug } = params;
+    const { slug } = await params;
     const body = await request.json();
 
     // Find organization
@@ -184,7 +184,7 @@ export async function DELETE(
     //   return NextResponse.json({ error: 'FORBIDDEN' }, { status: 403 });
     // }
 
-    const { slug } = params;
+    const { slug } = await params;
 
     const orgIndex = mockOrganizations.findIndex(org => org.id === slug);
     if (orgIndex === -1) {

@@ -72,10 +72,10 @@ const mockClassifieds: TClassified[] = [
 // GET /api/classifieds/[id] - Get single classified
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     
     const classified = mockClassifieds.find(item => item.id === id);
     
@@ -100,10 +100,10 @@ export async function GET(
 // PUT /api/classifieds/[id] - Update classified
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
     
     const classifiedIndex = mockClassifieds.findIndex(item => item.id === id);
@@ -136,10 +136,10 @@ export async function PUT(
 // DELETE /api/classifieds/[id] - Delete classified
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     
     const classifiedIndex = mockClassifieds.findIndex(item => item.id === id);
     

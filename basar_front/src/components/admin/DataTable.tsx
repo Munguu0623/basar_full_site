@@ -5,15 +5,15 @@ import { ChevronUp, ChevronDown, MoreHorizontal, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 
-export interface ColumnDef<T = any> {
+export interface ColumnDef<T = unknown> {
   key: string;
   header: string;
   sortable?: boolean;
   width?: string;
-  render?: (value: any, row: T) => React.ReactNode;
+  render?: (value: unknown, row: T) => React.ReactNode;
 }
 
-interface DataTableProps<T = any> {
+interface DataTableProps<T = unknown> {
   columns: ColumnDef<T>[];
   rows: T[];
   page: number;
@@ -190,8 +190,8 @@ export const DataTable = <T extends { id: string }>({
                   {columns.map((column) => (
                     <td key={column.key} className="px-6 py-4 text-sm text-slate-900">
                       {column.render ? 
-                        column.render((row as any)[column.key], row) : 
-                        (row as any)[column.key]
+                        column.render((row as Record<string, unknown>)[column.key], row) : 
+                        String((row as Record<string, unknown>)[column.key])
                       }
                     </td>
                   ))}

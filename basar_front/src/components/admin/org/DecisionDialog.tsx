@@ -109,12 +109,12 @@ export const DecisionDialog: React.FC<DecisionDialogProps> = ({
           <p className="text-slate-600 mb-4">
             {isApprove ? (
               <>
-                <span className="font-medium text-slate-900">"{organizationName}"</span> байгууллагын 
+                <span className="font-medium text-slate-900">&ldquo;{organizationName}&rdquo;</span> байгууллагын 
                 хүсэлтийг батлахдаа итгэлтэй байна уу?
               </>
             ) : (
               <>
-                <span className="font-medium text-slate-900">"{organizationName}"</span> байгууллагын 
+                <span className="font-medium text-slate-900">&ldquo;{organizationName}&rdquo;</span> байгууллагын 
                 хүсэлтийг татгалзахдаа итгэлтэй байна уу?
               </>
             )}
@@ -125,7 +125,7 @@ export const DecisionDialog: React.FC<DecisionDialogProps> = ({
               <h4 className="font-medium text-emerald-900 mb-2">Батлагдсаны дараа:</h4>
               <ul className="text-sm text-emerald-700 space-y-1">
                 <li>• Байгууллага сайтад харагдана</li>
-                <li>• "Баталгаажсан" статустай болно</li>
+                <li>• &ldquo;Баталгаажсан&rdquo; статустай болно</li>
                 <li>• Хэрэглэгчид холбогдож болно</li>
                 <li>• Мэдээ, нийтлэл оруулах боломжтой</li>
               </ul>

@@ -1,13 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import Link from 'next/link';
 import FiltersBar from '@/components/classifieds/FiltersBar';
 import SortBar from '@/components/classifieds/SortBar';
 import CardGrid from '@/components/classifieds/CardGrid';
 import Pagination from '@/components/common/Pagination';
-import { TClassified, TClassifiedFilters, TPaged } from '@/types';
+import { TClassified, TClassifiedFilters } from '@/types';
 
 // Mock data for development
 const mockClassifieds: TClassified[] = [
@@ -65,7 +64,7 @@ const mockClassifieds: TClassified[] = [
   }
 ];
 
-export default function ClassifiedsPage() {
+function ClassifiedsPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -223,5 +222,13 @@ export default function ClassifiedsPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ClassifiedsPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center">Ачаалж байна...</div>}>
+      <ClassifiedsPageContent />
+    </Suspense>
   );
 }

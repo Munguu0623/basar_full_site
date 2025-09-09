@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { AlertCircle, Save, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import ImageUploader from '@/components/common/ImageUploader';
 import { TClassifiedCreateRequest, TClassified } from '@/types';
 
@@ -122,7 +121,7 @@ export default function ClassifiedForm({ onSubmit, isSubmitting }: ClassifiedFor
     return newErrors;
   };
 
-  const handleInputChange = (field: keyof TClassifiedCreateRequest, value: any) => {
+  const handleInputChange = (field: keyof TClassifiedCreateRequest, value: string | number | string[]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     
     // Clear error when user starts typing
